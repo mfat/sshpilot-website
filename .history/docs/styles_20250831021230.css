@@ -97,7 +97,6 @@ body {
     gap: var(--spacing-sm);
     text-decoration: none;
     color: var(--text-primary);
-    margin-left: var(--spacing-md);
 }
 
 .logo-img {
