@@ -89,6 +89,24 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Hero section */
+#hero {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
 /* Screenshots */
 .screenshots {
     margin: 20px 0;
