@@ -22,6 +22,33 @@ body {
     padding: 20px;
 }
 
+
+
+/* Header */
+.header-content {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    margin-bottom: 5px;
+}
+
+.header-icon {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+}
+
+.header-content h1 {
+    margin: 0;
+    line-height: 1;
+    font-size: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+
+
 /* Headers */
 h1 {
     font-size: 2.5em;
