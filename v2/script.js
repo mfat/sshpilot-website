@@ -1,181 +1,379 @@
-// Smooth scrolling for navigation links
-document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling for anchor links
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
+// Terminal-style JavaScript for sshPilot v2
+
+class TerminalInterface {
+    constructor() {
+        this.currentSection = 'welcome';
+        this.typingSpeed = 50;
+        this.init();
+    }
+
+    init() {
+        this.setupEventListeners();
+        this.startTypingEffect();
+        this.setupScreenshotModal();
+    }
+
+    setupEventListeners() {
+        // Menu navigation
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const section = e.currentTarget.dataset.section;
+                if (section === 'exit') {
+                    this.showExitMessage();
+                } else {
+                    this.navigateToSection(section);
+                }
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyboardNavigation(e);
+        });
+
+        // Screenshot modal
+        document.querySelectorAll('.screenshot-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const screenshot = e.currentTarget.dataset.screenshot;
+                this.openScreenshotModal(screenshot);
+            });
+        });
+
+        // Modal close
+        document.querySelector('.modal-close').addEventListener('click', () => {
+            this.closeScreenshotModal();
+        });
+
+        // Close modal on background click
+        document.getElementById('screenshot-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'screenshot-modal') {
+                this.closeScreenshotModal();
+            }
+        });
+
+        // Terminal buttons (for fun)
+        document.querySelector('.terminal-button.close').addEventListener('click', () => {
+            this.showExitMessage();
+        });
+
+        document.querySelector('.terminal-button.minimize').addEventListener('click', () => {
+            this.minimizeTerminal();
+        });
+
+        document.querySelector('.terminal-button.maximize').addEventListener('click', () => {
+            this.maximizeTerminal();
+        });
+    }
+
+    startTypingEffect() {
+        // Type the initial command
+        const commandElement = document.querySelector('#welcome .command');
+        const originalText = commandElement.textContent;
+        commandElement.textContent = '';
+        
+        this.typeText(commandElement, originalText, () => {
+            // After typing command, show output
+            setTimeout(() => {
+                this.showWelcomeOutput();
+            }, 500);
+        });
+    }
+
+    typeText(element, text, callback) {
+        let index = 0;
+        const interval = setInterval(() => {
+            if (index < text.length) {
+                element.textContent += text[index];
+                index++;
+            } else {
+                clearInterval(interval);
+                if (callback) callback();
+            }
+        }, this.typingSpeed);
+    }
+
+    showWelcomeOutput() {
+        const output = document.querySelector('#welcome .terminal-output');
+        output.style.display = 'block';
+        output.style.opacity = '0';
+        
+        // Fade in the output
+        setTimeout(() => {
+            output.style.transition = 'opacity 0.5s ease-in-out';
+            output.style.opacity = '1';
             
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight - 20;
+            // Show menu after welcome
+            setTimeout(() => {
+                this.showMenu();
+            }, 1000);
+        }, 500);
+    }
+
+    showMenu() {
+        const menuSection = document.getElementById('menu');
+        menuSection.classList.remove('hidden');
+        
+        // Type the menu command
+        const commandElement = document.querySelector('#menu .command');
+        const originalText = commandElement.textContent;
+        commandElement.textContent = '';
+        
+        this.typeText(commandElement, originalText, () => {
+            // Show menu options with typing effect
+            setTimeout(() => {
+                this.showMenuOptions();
+            }, 500);
+        });
+    }
+
+    showMenuOptions() {
+        const menuOptions = document.querySelectorAll('.menu-item');
+        menuOptions.forEach((option, index) => {
+            setTimeout(() => {
+                option.style.opacity = '0';
+                option.style.transform = 'translateX(-20px)';
+                option.style.transition = 'all 0.3s ease-in-out';
+                option.style.display = 'flex';
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                setTimeout(() => {
+                    option.style.opacity = '1';
+                    option.style.transform = 'translateX(0)';
+                }, 50);
+            }, index * 200);
+        });
+    }
+
+    navigateToSection(section) {
+        // Hide current section
+        const currentSection = document.getElementById(this.currentSection);
+        if (currentSection) {
+            currentSection.classList.add('hidden');
+        }
+
+        // Show new section
+        const newSection = document.getElementById(section);
+        if (newSection) {
+            newSection.classList.remove('hidden');
+            this.currentSection = section;
+            
+            // Type the command for the new section
+            const commandElement = newSection.querySelector('.command');
+            if (commandElement) {
+                const originalText = commandElement.textContent;
+                commandElement.textContent = '';
+                this.typeText(commandElement, originalText);
             }
-        });
-    });
-
-    // Add scroll effect to header
-    const header = document.querySelector('.header');
-    let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            // Scrolling up
-            header.style.transform = 'translateY(0)';
         }
+    }
+
+    handleKeyboardNavigation(e) {
+        const key = e.key;
         
-        lastScrollTop = scrollTop;
-    });
-
-    // Add intersection observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+        // Number keys for menu navigation
+        if (key >= '0' && key <= '4') {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const index = key === '0' ? 4 : parseInt(key) - 1;
+            
+            if (menuItems[index]) {
+                const section = menuItems[index].dataset.section;
+                if (section === 'exit') {
+                    this.showExitMessage();
+                } else {
+                    this.navigateToSection(section);
+                }
             }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.feature-card, .screenshot-item, .download-card, .shortcut-item');
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
-    });
-
-    // Add loading animation for images
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        img.addEventListener('load', function() {
-            this.style.opacity = '1';
-        });
-        
-        // If image is already loaded
-        if (img.complete) {
-            img.style.opacity = '1';
         }
-    });
-
-    // Add keyboard navigation support
-    document.addEventListener('keydown', function(e) {
-        // Escape key to close any open modals or return to top
-        if (e.key === 'Escape') {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-    });
-
-    // Add copy functionality for cryptocurrency addresses
-    const cryptoAddresses = document.querySelectorAll('.footer-section p');
-    cryptoAddresses.forEach(address => {
-        if (address.textContent.includes('bc1') || address.textContent.includes('DRz')) {
-            address.style.cursor = 'pointer';
-            address.title = 'Click to copy';
-            
-            address.addEventListener('click', function() {
-                const text = this.textContent.split(': ')[1];
-                navigator.clipboard.writeText(text).then(() => {
-                    // Show temporary feedback
-                    const originalText = this.textContent;
-                    this.textContent = 'Copied!';
-                    this.style.color = 'var(--primary-color)';
-                    
-                    setTimeout(() => {
-                        this.textContent = originalText;
-                        this.style.color = '';
-                    }, 2000);
-                });
-            });
-        }
-    });
-
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('.theme-icon');
-    
-    // Get saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-    
-    function updateThemeIcon(theme) {
-        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-    }
-    
-    function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    }
-    
-    themeToggle.addEventListener('click', toggleTheme);
-
-    // Add download tracking (optional analytics)
-    const downloadButtons = document.querySelectorAll('a[href*="github.com/mfat/sshpilot/releases"]');
-    downloadButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // You can add analytics tracking here
-            console.log('Download clicked:', this.href);
-        });
-    });
-
-    // Add mobile menu functionality (if needed)
-    // This can be expanded to add a hamburger menu for mobile
-    function setupMobileMenu() {
-        const navLinks = document.querySelector('.nav-links');
-        const header = document.querySelector('.header');
-        
-        // Add hamburger menu for mobile if needed
-        if (window.innerWidth <= 768 && !document.querySelector('.mobile-menu-toggle')) {
-            const toggle = document.createElement('button');
-            toggle.className = 'mobile-menu-toggle';
-            toggle.innerHTML = '☰';
-            toggle.setAttribute('aria-label', 'Toggle navigation menu');
-            
-            toggle.addEventListener('click', function() {
-                navLinks.classList.toggle('show');
-                this.innerHTML = navLinks.classList.contains('show') ? '✕' : '☰';
-            });
-            
-            header.querySelector('.nav-container').appendChild(toggle);
+        // Escape key to close modal
+        if (key === 'Escape') {
+            this.closeScreenshotModal();
         }
     }
 
-    // Setup mobile menu on load and resize
-    setupMobileMenu();
-    window.addEventListener('resize', setupMobileMenu);
+    setupScreenshotModal() {
+        this.modal = document.getElementById('screenshot-modal');
+        this.modalImage = this.modal.querySelector('.modal-image');
+        this.modalCaption = this.modal.querySelector('.modal-caption');
+    }
+
+    openScreenshotModal(screenshotName) {
+        const imagePath = `screenshots/${screenshotName}`;
+        const caption = this.getScreenshotCaption(screenshotName);
+        
+        this.modalImage.src = imagePath;
+        this.modalImage.alt = caption;
+        this.modalCaption.textContent = caption;
+        
+        this.modal.classList.remove('hidden');
+        
+        // Add typing effect to modal title
+        const modalTitle = this.modal.querySelector('.modal-title');
+        const originalTitle = modalTitle.textContent;
+        modalTitle.textContent = '';
+        this.typeText(modalTitle, originalTitle);
+    }
+
+    closeScreenshotModal() {
+        this.modal.classList.add('hidden');
+    }
+
+    getScreenshotCaption(screenshotName) {
+        const captions = {
+            'main-window.png': 'Main Window - Tabbed SSH interface',
+            'connection-settings.png': 'Connection Settings - Configure SSH connections',
+            'terminal-settings.png': 'Terminal Settings - Customize terminal appearance',
+            'preferences.png': 'Preferences - Application settings',
+            'htop.png': 'Terminal with htop - System monitoring',
+            'advanced-config.png': 'Advanced Configuration - Advanced SSH options'
+        };
+        return captions[screenshotName] || screenshotName;
+    }
+
+    showExitMessage() {
+        const exitMessage = `
+$ echo "Thanks for visiting sshPilot!"
+Thanks for visiting sshPilot!
+$ echo "Don't forget to download and try it out!"
+Don't forget to download and try it out!
+$ echo "Goodbye! 👋"
+Goodbye! 👋
+        `;
+        
+        // Create a new terminal line with exit message
+        const terminalContent = document.querySelector('.terminal-content');
+        const exitSection = document.createElement('div');
+        exitSection.className = 'terminal-section';
+        exitSection.innerHTML = `
+            <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">exit</span>
+            </div>
+            <div class="terminal-output">
+                <pre style="color: var(--text-secondary);">${exitMessage}</pre>
+            </div>
+        `;
+        
+        // Hide current section and show exit message
+        document.getElementById(this.currentSection).classList.add('hidden');
+        terminalContent.appendChild(exitSection);
+        
+        // Type the exit command
+        const commandElement = exitSection.querySelector('.command');
+        this.typeText(commandElement, 'exit', () => {
+            // After typing exit, show the message
+            setTimeout(() => {
+                const output = exitSection.querySelector('.terminal-output');
+                output.style.opacity = '0';
+                output.style.transition = 'opacity 0.5s ease-in-out';
+                
+                setTimeout(() => {
+                    output.style.opacity = '1';
+                }, 100);
+            }, 500);
+        });
+    }
+
+    minimizeTerminal() {
+        const container = document.querySelector('.terminal-container');
+        container.style.transform = 'scale(0.1)';
+        container.style.opacity = '0';
+        container.style.transition = 'all 0.3s ease-in-out';
+        
+        setTimeout(() => {
+            container.style.transform = 'scale(1)';
+            container.style.opacity = '1';
+        }, 300);
+    }
+
+    maximizeTerminal() {
+        const container = document.querySelector('.terminal-container');
+        container.style.maxWidth = container.style.maxWidth === '100vw' ? '1200px' : '100vw';
+        container.style.margin = container.style.maxWidth === '100vw' ? '20px auto' : '0';
+        container.style.borderRadius = container.style.maxWidth === '100vw' ? '8px' : '0';
+        container.style.transition = 'all 0.3s ease-in-out';
+    }
+}
+
+// Initialize terminal interface when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new TerminalInterface();
 });
 
-// Add service worker for PWA capabilities (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        // You can register a service worker here for offline functionality
-        // navigator.serviceWorker.register('/sw.js');
+// Add some retro terminal effects
+document.addEventListener('DOMContentLoaded', () => {
+    // Add CRT scan lines effect
+    const scanLines = document.createElement('div');
+    scanLines.className = 'scan-lines';
+    scanLines.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            transparent 50%,
+            rgba(0, 255, 0, 0.02) 50%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+        z-index: 9999;
+    `;
+    document.body.appendChild(scanLines);
+
+    // Add subtle flicker effect
+    setInterval(() => {
+        const flicker = Math.random() * 0.1 + 0.95;
+        document.body.style.filter = `brightness(${flicker})`;
+    }, 100);
+
+    // Add terminal startup sound effect (optional)
+    const startupSound = () => {
+        // Create a simple beep sound using Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.2);
+    };
+
+    // Uncomment the line below to enable startup sound
+    // startupSound();
+});
+
+// Add retro cursor effect
+document.addEventListener('DOMContentLoaded', () => {
+    const cursors = document.querySelectorAll('.input-cursor');
+    cursors.forEach(cursor => {
+        cursor.style.animation = 'blink 1s infinite';
     });
+});
+
+// Add typing sound effect (optional)
+function playTypingSound() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.setValueAtTime(2000, audioContext.currentTime);
+    gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.05);
 }
+
+// Export for potential use
+window.TerminalInterface = TerminalInterface;
