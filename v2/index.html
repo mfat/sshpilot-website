@@ -7,148 +7,102 @@
     <meta name="description" content="sshPilot is a user-friendly, modern and lightweight SSH connection manager for Linux, with an integrated terminal. Free alternative to Putty and Termius.">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="io.github.mfat.sshpilot.svg">
-    <script src="script.js" defer></script>
     <meta property="og:title" content="sshPilot - SSH Connection Manager">
     <meta property="og:description" content="User-friendly SSH connection manager with integrated terminal for Linux">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mfat.github.io/sshpilot/">
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
+    <div class="page">
         <header>
-            <div class="header-content">
-                <h1>sshPilot</h1>
-                <p class="tagline">SSH Connection Manager for Linux</p>
-                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">🌙</button>
-            </div>
+            <h1>sshPilot</h1>
+            <p>SSH Connection Manager for Linux</p>
         </header>
 
-        <!-- Navigation -->
         <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#screenshots">Screenshots</a></li>
-                <li><a href="#download">Download</a></li>
-                <li><a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a></li>
-            </ul>
+            <a href="#about">About</a> |
+            <a href="#features">Features</a> |
+            <a href="#screenshots">Screenshots</a> |
+            <a href="#download">Download</a> |
+            <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
         </nav>
 
-        <!-- Main Content -->
         <main>
-            <!-- About Section -->
             <section id="about">
                 <h2>About</h2>
                 <p>sshPilot is a user-friendly, lightweight SSH connection manager for Linux with an integrated terminal. It's a free alternative to Putty and Termius, designed specifically for the Linux ecosystem.</p>
                 <p>Manage all your servers in one place with an intuitive interface and powerful features.</p>
             </section>
 
-            <!-- Features Section -->
             <section id="features">
                 <h2>Features</h2>
-                <div class="features-grid">
-                    <div class="feature">
-                        <h3>🖥️ Tabbed Interface</h3>
-                        <p>Manage multiple SSH connections with an intuitive tabbed interface for efficient multitasking.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>⌨️ Keyboard Navigation</h3>
-                        <p>Full keyboard support with shortcuts for quick navigation and command execution.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>📁 File Management</h3>
-                        <p>Integrated SFTP support for seamless file management using your favorite file manager.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>🔐 Secure Storage</h3>
-                        <p>Secure credential storage with no passwords saved to clipboard or plain text files.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>🌐 Port Forwarding</h3>
-                        <p>Full support for Local, Remote and Dynamic port forwarding with easy configuration.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>🔑 Key Management</h3>
-                        <p>Generate keypairs and copy them to remote servers with built-in ssh-copy-id support.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>🎨 Customizable UI</h3>
-                        <p>Light/Dark themes and customizable terminal fonts and color schemes.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>⚡ Performance</h3>
-                        <p>Lightweight and fast, built with modern GTK4 and Adwaita for optimal performance.</p>
-                    </div>
-                </div>
+                <ul>
+                    <li><strong>Tabbed Interface</strong> - Manage multiple SSH connections with tabs</li>
+                    <li><strong>Keyboard Navigation</strong> - Full keyboard support with shortcuts</li>
+                    <li><strong>File Management</strong> - Integrated SFTP support</li>
+                    <li><strong>Secure Storage</strong> - Secure credential storage</li>
+                    <li><strong>Port Forwarding</strong> - Local, Remote and Dynamic port forwarding</li>
+                    <li><strong>Key Management</strong> - Generate keypairs and ssh-copy-id support</li>
+                    <li><strong>Customizable UI</strong> - Light/Dark themes and terminal customization</li>
+                    <li><strong>Performance</strong> - Lightweight and fast with GTK4</li>
+                </ul>
             </section>
 
-            <!-- Screenshots Section -->
             <section id="screenshots">
                 <h2>Screenshots</h2>
-                <div class="screenshots-grid">
-                    <div class="screenshot">
-                        <img src="screenshots/main-window.png" alt="Main Window" loading="lazy">
-                        <p>Main Window</p>
-                    </div>
-                    <div class="screenshot">
-                        <img src="screenshots/connection-settings.png" alt="Connection Settings" loading="lazy">
-                        <p>Connection Settings</p>
-                    </div>
-                    <div class="screenshot">
-                        <img src="screenshots/terminal-settings.png" alt="Terminal Settings" loading="lazy">
-                        <p>Terminal Settings</p>
-                    </div>
-                    <div class="screenshot">
-                        <img src="screenshots/preferences.png" alt="Preferences" loading="lazy">
-                        <p>Preferences</p>
-                    </div>
-                    <div class="screenshot">
-                        <img src="screenshots/htop.png" alt="Terminal with htop" loading="lazy">
-                        <p>Terminal with htop</p>
-                    </div>
-                    <div class="screenshot">
-                        <img src="screenshots/advanced-config.png" alt="Advanced Configuration" loading="lazy">
-                        <p>Advanced Configuration</p>
-                    </div>
+                <div class="screenshots">
+                    <figure>
+                        <img src="screenshots/main-window.png" alt="Main Window">
+                        <figcaption>Main Window</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="screenshots/connection-settings.png" alt="Connection Settings">
+                        <figcaption>Connection Settings</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="screenshots/terminal-settings.png" alt="Terminal Settings">
+                        <figcaption>Terminal Settings</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="screenshots/preferences.png" alt="Preferences">
+                        <figcaption>Preferences</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="screenshots/htop.png" alt="Terminal with htop">
+                        <figcaption>Terminal with htop</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="screenshots/advanced-config.png" alt="Advanced Configuration">
+                        <figcaption>Advanced Configuration</figcaption>
+                    </figure>
                 </div>
             </section>
 
-            <!-- Download Section -->
             <section id="download">
                 <h2>Download</h2>
-                <div class="download-options">
-                    <div class="download-option">
-                        <h3>📦 Latest Release</h3>
-                        <p>Download the latest stable version for your platform</p>
-                        <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" class="download-btn">Download Latest</a>
-                    </div>
-                    <div class="download-option">
-                        <h3>🐧 Linux Packages</h3>
-                        <p>Choose your linux distribution</p>
-                        <div class="package-links">
-                            <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank">Debian/Ubuntu (.deb)</a>
-                            <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank">Red Hat/Fedora (.rpm)</a>
-                            <a href="https://aur.archlinux.org/packages/sshpilot" target="_blank">Arch Linux (AUR)</a>
-                        </div>
-                    </div>
-                    <div class="download-option">
-                        <h3>🔧 From Source</h3>
-                        <p>Build and run from source code</p>
-                        <a href="https://github.com/mfat/sshpilot#run-from-source" target="_blank" class="download-btn">View Instructions</a>
-                    </div>
-                </div>
+                <h3>Latest Release</h3>
+                <p>Download the latest stable version for your platform</p>
+                <p><a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank">Download Latest</a></p>
+
+                <h3>Linux Packages</h3>
+                <p>Choose your linux distribution:</p>
+                <ul>
+                    <li><a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank">Debian/Ubuntu (.deb)</a></li>
+                    <li><a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank">Red Hat/Fedora (.rpm)</a></li>
+                    <li><a href="https://aur.archlinux.org/packages/sshpilot" target="_blank">Arch Linux (AUR)</a></li>
+                </ul>
+
+                <h3>From Source</h3>
+                <p>Build and run from source code</p>
+                <p><a href="https://github.com/mfat/sshpilot#run-from-source" target="_blank">View Instructions</a></p>
             </section>
         </main>
 
-        <!-- Footer -->
         <footer>
-            <div class="footer-content">
-                <p>sshPilot - Made with ❤️ for the Linux community</p>
-                <p>Free software (GPL v3 license)</p>
-                <p>Support: Bitcoin: bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</p>
-                <p>Doge: DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</p>
-            </div>
+            <p>sshPilot - Made with ❤️ for the Linux community</p>
+            <p>Free software (GPL v3 license)</p>
+            <p>Support: Bitcoin: bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</p>
+            <p>Doge: DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</p>
         </footer>
     </div>
 </body>
