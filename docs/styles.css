@@ -219,6 +219,13 @@ body {
     border: none;
     cursor: pointer;
     min-height: 44px;
+    min-width: 44px;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .btn-primary {
@@ -314,6 +321,14 @@ body {
     cursor: pointer;
     font-weight: 500;
     transition: var(--transition);
+    min-height: 44px;
+    min-width: 44px;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .view-btn:hover {
@@ -439,6 +454,14 @@ body {
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
+    min-width: 44px;
+    min-height: 44px;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .slideshow-btn:hover {
@@ -472,6 +495,12 @@ body {
     justify-content: center;
     backdrop-filter: blur(10px);
     z-index: 1001;
+    min-width: 44px;
+    min-height: 44px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .slideshow-close:hover {
@@ -493,6 +522,17 @@ body {
     background: var(--border);
     cursor: pointer;
     transition: var(--transition);
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .slideshow-indicator.active {
@@ -516,6 +556,14 @@ body {
     cursor: pointer;
     font-size: var(--font-size-large);
     transition: var(--transition);
+    min-height: 44px;
+    min-width: 44px;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .slideshow-play-pause:hover {
@@ -768,6 +816,34 @@ html {
 .footer-section a:focus {
     outline: 2px solid var(--primary-color);
     outline-offset: 2px;
+}
+
+/* Enhanced clickability for buttons */
+.btn::before,
+.view-btn::before,
+.slideshow-btn::before,
+.slideshow-close::before,
+.slideshow-play-pause::before,
+.slideshow-indicator::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+    border-radius: inherit;
+}
+
+/* Ensure buttons are above other elements */
+.btn,
+.view-btn,
+.slideshow-btn,
+.slideshow-close,
+.slideshow-play-pause,
+.slideshow-indicator {
+    position: relative;
+    z-index: 2;
 }
 
 /* Loading animation for images */
