@@ -14,243 +14,142 @@
     <meta property="og:url" content="https://mfat.github.io/sshpilot/">
 </head>
 <body>
-    <div class="terminal-container">
-        <!-- Terminal Header -->
-        <div class="terminal-header">
-            <div class="terminal-buttons">
-                <span class="terminal-button close"></span>
-                <span class="terminal-button minimize"></span>
-                <span class="terminal-button maximize"></span>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>sshPilot</h1>
+                <p class="tagline">SSH Connection Manager for Linux</p>
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">🌙</button>
             </div>
-            <div class="terminal-title">sshPilot - SSH Connection Manager</div>
-        </div>
+        </header>
 
-        <!-- Terminal Content -->
-        <div class="terminal-content">
-            <!-- Welcome Screen -->
-            <div class="terminal-section" id="welcome">
-                <div class="terminal-line">
-                    <span class="prompt">$</span>
-                    <span class="command">cat sshpilot.txt</span>
-                </div>
-                <div class="terminal-output">
-                    <div class="ascii-art">
-                        <pre>
-███████╗███████╗██╗  ██╗██████╗ ██████╗ ██╗     ██╗███████╗████████╗
-██╔════╝██╔════╝██║  ██║██╔══██╗██╔══██╗██║     ██║██╔════╝╚══██╔══╝
-███████╗███████╗███████║██████╔╝██████╔╝██║     ██║███████╗   ██║   
-╚════██║╚════██║██╔══██║██╔═══╝ ██╔═══╝ ██║     ██║╚════██║   ██║   
-███████║███████║██║  ██║██║     ██║     ███████╗██║███████║   ██║   
-╚══════╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝╚═╝╚══════╝   ╚═╝   
-                        </pre>
-                    </div>
-                    <div class="welcome-text">
-                        <p>Modern SSH Connection Manager for Linux</p>
-                        <p>User-friendly, lightweight SSH client with integrated terminal</p>
-                        <p>Manage all your servers in one place</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a></li>
+            </ul>
+        </nav>
 
-            <!-- Navigation Menu -->
-            <div class="terminal-section" id="menu">
-                <div class="terminal-line">
-                    <span class="prompt">$</span>
-                    <span class="command">./menu.sh</span>
-                </div>
-                <div class="terminal-output">
-                    <div class="menu-options">
-                        <div class="menu-item" data-section="features">
-                            <span class="menu-number">[1]</span>
-                            <span class="menu-text">Features</span>
-                        </div>
-                        <div class="menu-item" data-section="screenshots">
-                            <span class="menu-number">[2]</span>
-                            <span class="menu-text">Screenshots</span>
-                        </div>
-                        <div class="menu-item" data-section="download">
-                            <span class="menu-number">[3]</span>
-                            <span class="menu-text">Download</span>
-                        </div>
-                        <div class="menu-item" data-section="github">
-                            <span class="menu-number">[4]</span>
-                            <span class="menu-text">GitHub Repository</span>
-                        </div>
-                        <div class="menu-item" data-section="exit">
-                            <span class="menu-number">[0]</span>
-                            <span class="menu-text">Exit</span>
-                        </div>
-                    </div>
-                    <div class="menu-prompt">
-                        <span class="prompt">sshPilot></span>
-                        <span class="input-cursor">█</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Main Content -->
+        <main>
+            <!-- About Section -->
+            <section id="about">
+                <h2>About</h2>
+                <p>sshPilot is a user-friendly, lightweight SSH connection manager for Linux with an integrated terminal. It's a free alternative to Putty and Termius, designed specifically for the Linux ecosystem.</p>
+                <p>Manage all your servers in one place with an intuitive interface and powerful features.</p>
+            </section>
 
             <!-- Features Section -->
-            <div class="terminal-section hidden" id="features">
-                <div class="terminal-line">
-                    <span class="prompt">$</span>
-                    <span class="command">cat features.txt</span>
-                </div>
-                <div class="terminal-output">
-                    <div class="features-list">
-                        <div class="feature-item">
-                            <span class="feature-icon">🖥️</span>
-                            <span class="feature-title">Tabbed Interface</span>
-                            <span class="feature-desc">Manage multiple SSH connections with intuitive tabs</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">⌨️</span>
-                            <span class="feature-title">Keyboard Navigation</span>
-                            <span class="feature-desc">Full keyboard support with shortcuts</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">📁</span>
-                            <span class="feature-title">File Management</span>
-                            <span class="feature-desc">Integrated SFTP support for file operations</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🔐</span>
-                            <span class="feature-title">Secure Storage</span>
-                            <span class="feature-desc">Secure credential storage, no plain text passwords</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🌐</span>
-                            <span class="feature-title">Port Forwarding</span>
-                            <span class="feature-desc">Local, Remote and Dynamic port forwarding</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🔑</span>
-                            <span class="feature-title">Key Management</span>
-                            <span class="feature-desc">Generate keypairs and ssh-copy-id support</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🎨</span>
-                            <span class="feature-title">Customizable UI</span>
-                            <span class="feature-desc">Light/Dark themes and terminal customization</span>
-                        </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">⚡</span>
-                            <span class="feature-title">Performance</span>
-                            <span class="feature-desc">Lightweight and fast with GTK4 and Adwaita</span>
-                        </div>
+            <section id="features">
+                <h2>Features</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3>🖥️ Tabbed Interface</h3>
+                        <p>Manage multiple SSH connections with an intuitive tabbed interface for efficient multitasking.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>⌨️ Keyboard Navigation</h3>
+                        <p>Full keyboard support with shortcuts for quick navigation and command execution.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>📁 File Management</h3>
+                        <p>Integrated SFTP support for seamless file management using your favorite file manager.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🔐 Secure Storage</h3>
+                        <p>Secure credential storage with no passwords saved to clipboard or plain text files.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🌐 Port Forwarding</h3>
+                        <p>Full support for Local, Remote and Dynamic port forwarding with easy configuration.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🔑 Key Management</h3>
+                        <p>Generate keypairs and copy them to remote servers with built-in ssh-copy-id support.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🎨 Customizable UI</h3>
+                        <p>Light/Dark themes and customizable terminal fonts and color schemes.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>⚡ Performance</h3>
+                        <p>Lightweight and fast, built with modern GTK4 and Adwaita for optimal performance.</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <!-- Screenshots Section -->
-            <div class="terminal-section hidden" id="screenshots">
-                <div class="terminal-line">
-                    <span class="prompt">$</span>
-                    <span class="command">ls screenshots/</span>
-                </div>
-                <div class="terminal-output">
-                    <div class="screenshots-grid">
-                        <div class="screenshot-item" data-screenshot="main-window.png">
-                            <div class="screenshot-preview">[main-window.png]</div>
-                            <div class="screenshot-caption">Main Window</div>
-                        </div>
-                        <div class="screenshot-item" data-screenshot="connection-settings.png">
-                            <div class="screenshot-preview">[connection-settings.png]</div>
-                            <div class="screenshot-caption">Connection Settings</div>
-                        </div>
-                        <div class="screenshot-item" data-screenshot="terminal-settings.png">
-                            <div class="screenshot-preview">[terminal-settings.png]</div>
-                            <div class="screenshot-caption">Terminal Settings</div>
-                        </div>
-                        <div class="screenshot-item" data-screenshot="preferences.png">
-                            <div class="screenshot-preview">[preferences.png]</div>
-                            <div class="screenshot-caption">Preferences</div>
-                        </div>
-                        <div class="screenshot-item" data-screenshot="htop.png">
-                            <div class="screenshot-preview">[htop.png]</div>
-                            <div class="screenshot-caption">Terminal with htop</div>
-                        </div>
-                        <div class="screenshot-item" data-screenshot="advanced-config.png">
-                            <div class="screenshot-preview">[advanced-config.png]</div>
-                            <div class="screenshot-caption">Advanced Configuration</div>
-                        </div>
+            <section id="screenshots">
+                <h2>Screenshots</h2>
+                <div class="screenshots-grid">
+                    <div class="screenshot">
+                        <img src="screenshots/main-window.png" alt="Main Window" loading="lazy">
+                        <p>Main Window</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="screenshots/connection-settings.png" alt="Connection Settings" loading="lazy">
+                        <p>Connection Settings</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="screenshots/terminal-settings.png" alt="Terminal Settings" loading="lazy">
+                        <p>Terminal Settings</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="screenshots/preferences.png" alt="Preferences" loading="lazy">
+                        <p>Preferences</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="screenshots/htop.png" alt="Terminal with htop" loading="lazy">
+                        <p>Terminal with htop</p>
+                    </div>
+                    <div class="screenshot">
+                        <img src="screenshots/advanced-config.png" alt="Advanced Configuration" loading="lazy">
+                        <p>Advanced Configuration</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <!-- Download Section -->
-            <div class="terminal-section hidden" id="download">
-                <div class="terminal-line">
-                    <span class="prompt">$</span>
-                    <span class="command">./download.sh</span>
-                </div>
-                <div class="terminal-output">
-                    <div class="download-options">
-                        <div class="download-item">
-                            <span class="download-title">📦 Latest Release</span>
-                            <span class="download-desc">Download the latest stable version</span>
-                            <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" class="download-link">[Download Latest]</a>
-                        </div>
-                        <div class="download-item">
-                            <span class="download-title">🐧 Linux Packages</span>
-                            <span class="download-desc">Choose your distribution:</span>
-                            <div class="package-links">
-                                <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" class="package-link">[Debian/Ubuntu .deb]</a>
-                                <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" class="package-link">[Red Hat/Fedora .rpm]</a>
-                                <a href="https://aur.archlinux.org/packages/sshpilot" target="_blank" class="package-link">[Arch Linux AUR]</a>
-                            </div>
-                        </div>
-                        <div class="download-item">
-                            <span class="download-title">🔧 From Source</span>
-                            <span class="download-desc">Build and run from source code</span>
-                            <a href="https://github.com/mfat/sshpilot#run-from-source" target="_blank" class="download-link">[View Instructions]</a>
+            <section id="download">
+                <h2>Download</h2>
+                <div class="download-options">
+                    <div class="download-option">
+                        <h3>📦 Latest Release</h3>
+                        <p>Download the latest stable version for your platform</p>
+                        <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" class="download-btn">Download Latest</a>
+                    </div>
+                    <div class="download-option">
+                        <h3>🐧 Linux Packages</h3>
+                        <p>Choose your linux distribution</p>
+                        <div class="package-links">
+                            <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank">Debian/Ubuntu (.deb)</a>
+                            <a href="https://github.com/mfat/sshpilot/releases/latest" target="_blank">Red Hat/Fedora (.rpm)</a>
+                            <a href="https://aur.archlinux.org/packages/sshpilot" target="_blank">Arch Linux (AUR)</a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- GitHub Section -->
-            <div class="terminal-section hidden" id="github">
-                <div class="terminal-line">
-                    <span class="prompt">$</span>
-                    <span class="command">git remote -v</span>
-                </div>
-                <div class="terminal-output">
-                    <div class="github-info">
-                        <p>origin  https://github.com/mfat/sshpilot.git (fetch)</p>
-                        <p>origin  https://github.com/mfat/sshpilot.git (push)</p>
-                        <br>
-                        <div class="github-links">
-                            <a href="https://github.com/mfat/sshpilot" target="_blank" class="github-link">[Repository]</a>
-                            <a href="https://github.com/mfat/sshpilot/releases" target="_blank" class="github-link">[Releases]</a>
-                            <a href="https://github.com/mfat/sshpilot/issues" target="_blank" class="github-link">[Issues]</a>
-                            <a href="https://github.com/mfat/sshpilot/discussions" target="_blank" class="github-link">[Discussions]</a>
-                        </div>
+                    <div class="download-option">
+                        <h3>🔧 From Source</h3>
+                        <p>Build and run from source code</p>
+                        <a href="https://github.com/mfat/sshpilot#run-from-source" target="_blank" class="download-btn">View Instructions</a>
                     </div>
                 </div>
-            </div>
+            </section>
+        </main>
 
-            <!-- Footer -->
-            <div class="terminal-footer">
-                <div class="footer-content">
-                    <span class="footer-text">sshPilot - Made with ❤️ for the Linux community</span>
-                    <span class="footer-text">Free software (GPL v3 license)</span>
-                    <span class="footer-text">Support: Bitcoin: bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</span>
-                </div>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>sshPilot - Made with ❤️ for the Linux community</p>
+                <p>Free software (GPL v3 license)</p>
+                <p>Support: Bitcoin: bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</p>
+                <p>Doge: DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</p>
             </div>
-        </div>
-    </div>
-
-    <!-- Screenshot Modal -->
-    <div class="screenshot-modal hidden" id="screenshot-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="modal-title">Screenshot Viewer</span>
-                <button class="modal-close">✕</button>
-            </div>
-            <div class="modal-body">
-                <img src="" alt="" class="modal-image">
-                <div class="modal-caption"></div>
-            </div>
-        </div>
+        </footer>
     </div>
 </body>
 </html>

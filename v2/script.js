@@ -1,379 +1,201 @@
-// Terminal-style JavaScript for sshPilot v2
+// Simple theme switching for sshPilot v2
 
-class TerminalInterface {
+class ThemeManager {
     constructor() {
-        this.currentSection = 'welcome';
-        this.typingSpeed = 50;
+        this.themeToggle = document.getElementById('theme-toggle');
+        this.currentTheme = this.getStoredTheme() || 'light';
         this.init();
     }
 
     init() {
+        this.applyTheme(this.currentTheme);
         this.setupEventListeners();
-        this.startTypingEffect();
-        this.setupScreenshotModal();
     }
 
     setupEventListeners() {
-        // Menu navigation
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                const section = e.currentTarget.dataset.section;
-                if (section === 'exit') {
-                    this.showExitMessage();
-                } else {
-                    this.navigateToSection(section);
-                }
-            });
+        this.themeToggle.addEventListener('click', () => {
+            this.toggleTheme();
         });
 
-        // Keyboard navigation
+        // Keyboard shortcut for theme toggle (Ctrl/Cmd + T)
         document.addEventListener('keydown', (e) => {
-            this.handleKeyboardNavigation(e);
-        });
-
-        // Screenshot modal
-        document.querySelectorAll('.screenshot-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                const screenshot = e.currentTarget.dataset.screenshot;
-                this.openScreenshotModal(screenshot);
-            });
-        });
-
-        // Modal close
-        document.querySelector('.modal-close').addEventListener('click', () => {
-            this.closeScreenshotModal();
-        });
-
-        // Close modal on background click
-        document.getElementById('screenshot-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'screenshot-modal') {
-                this.closeScreenshotModal();
+            if ((e.ctrlKey || e.metaKey) && e.key === 't') {
+                e.preventDefault();
+                this.toggleTheme();
             }
         });
-
-        // Terminal buttons (for fun)
-        document.querySelector('.terminal-button.close').addEventListener('click', () => {
-            this.showExitMessage();
-        });
-
-        document.querySelector('.terminal-button.minimize').addEventListener('click', () => {
-            this.minimizeTerminal();
-        });
-
-        document.querySelector('.terminal-button.maximize').addEventListener('click', () => {
-            this.maximizeTerminal();
-        });
     }
 
-    startTypingEffect() {
-        // Type the initial command
-        const commandElement = document.querySelector('#welcome .command');
-        const originalText = commandElement.textContent;
-        commandElement.textContent = '';
-        
-        this.typeText(commandElement, originalText, () => {
-            // After typing command, show output
-            setTimeout(() => {
-                this.showWelcomeOutput();
-            }, 500);
-        });
+    getStoredTheme() {
+        return localStorage.getItem('sshpilot-theme');
     }
 
-    typeText(element, text, callback) {
-        let index = 0;
-        const interval = setInterval(() => {
-            if (index < text.length) {
-                element.textContent += text[index];
-                index++;
-            } else {
-                clearInterval(interval);
-                if (callback) callback();
-            }
-        }, this.typingSpeed);
+    setStoredTheme(theme) {
+        localStorage.setItem('sshpilot-theme', theme);
     }
 
-    showWelcomeOutput() {
-        const output = document.querySelector('#welcome .terminal-output');
-        output.style.display = 'block';
-        output.style.opacity = '0';
-        
-        // Fade in the output
-        setTimeout(() => {
-            output.style.transition = 'opacity 0.5s ease-in-out';
-            output.style.opacity = '1';
-            
-            // Show menu after welcome
-            setTimeout(() => {
-                this.showMenu();
-            }, 1000);
-        }, 500);
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        this.updateThemeIcon(theme);
+        this.setStoredTheme(theme);
+        this.currentTheme = theme;
     }
 
-    showMenu() {
-        const menuSection = document.getElementById('menu');
-        menuSection.classList.remove('hidden');
-        
-        // Type the menu command
-        const commandElement = document.querySelector('#menu .command');
-        const originalText = commandElement.textContent;
-        commandElement.textContent = '';
-        
-        this.typeText(commandElement, originalText, () => {
-            // Show menu options with typing effect
-            setTimeout(() => {
-                this.showMenuOptions();
-            }, 500);
-        });
+    updateThemeIcon(theme) {
+        const icon = theme === 'dark' ? '☀️' : '🌙';
+        this.themeToggle.textContent = icon;
+        this.themeToggle.title = `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`;
     }
 
-    showMenuOptions() {
-        const menuOptions = document.querySelectorAll('.menu-item');
-        menuOptions.forEach((option, index) => {
-            setTimeout(() => {
-                option.style.opacity = '0';
-                option.style.transform = 'translateX(-20px)';
-                option.style.transition = 'all 0.3s ease-in-out';
-                option.style.display = 'flex';
-                
-                setTimeout(() => {
-                    option.style.opacity = '1';
-                    option.style.transform = 'translateX(0)';
-                }, 50);
-            }, index * 200);
-        });
-    }
-
-    navigateToSection(section) {
-        // Hide current section
-        const currentSection = document.getElementById(this.currentSection);
-        if (currentSection) {
-            currentSection.classList.add('hidden');
-        }
-
-        // Show new section
-        const newSection = document.getElementById(section);
-        if (newSection) {
-            newSection.classList.remove('hidden');
-            this.currentSection = section;
-            
-            // Type the command for the new section
-            const commandElement = newSection.querySelector('.command');
-            if (commandElement) {
-                const originalText = commandElement.textContent;
-                commandElement.textContent = '';
-                this.typeText(commandElement, originalText);
-            }
-        }
-    }
-
-    handleKeyboardNavigation(e) {
-        const key = e.key;
-        
-        // Number keys for menu navigation
-        if (key >= '0' && key <= '4') {
-            const menuItems = document.querySelectorAll('.menu-item');
-            const index = key === '0' ? 4 : parseInt(key) - 1;
-            
-            if (menuItems[index]) {
-                const section = menuItems[index].dataset.section;
-                if (section === 'exit') {
-                    this.showExitMessage();
-                } else {
-                    this.navigateToSection(section);
-                }
-            }
-        }
-        
-        // Escape key to close modal
-        if (key === 'Escape') {
-            this.closeScreenshotModal();
-        }
-    }
-
-    setupScreenshotModal() {
-        this.modal = document.getElementById('screenshot-modal');
-        this.modalImage = this.modal.querySelector('.modal-image');
-        this.modalCaption = this.modal.querySelector('.modal-caption');
-    }
-
-    openScreenshotModal(screenshotName) {
-        const imagePath = `screenshots/${screenshotName}`;
-        const caption = this.getScreenshotCaption(screenshotName);
-        
-        this.modalImage.src = imagePath;
-        this.modalImage.alt = caption;
-        this.modalCaption.textContent = caption;
-        
-        this.modal.classList.remove('hidden');
-        
-        // Add typing effect to modal title
-        const modalTitle = this.modal.querySelector('.modal-title');
-        const originalTitle = modalTitle.textContent;
-        modalTitle.textContent = '';
-        this.typeText(modalTitle, originalTitle);
-    }
-
-    closeScreenshotModal() {
-        this.modal.classList.add('hidden');
-    }
-
-    getScreenshotCaption(screenshotName) {
-        const captions = {
-            'main-window.png': 'Main Window - Tabbed SSH interface',
-            'connection-settings.png': 'Connection Settings - Configure SSH connections',
-            'terminal-settings.png': 'Terminal Settings - Customize terminal appearance',
-            'preferences.png': 'Preferences - Application settings',
-            'htop.png': 'Terminal with htop - System monitoring',
-            'advanced-config.png': 'Advanced Configuration - Advanced SSH options'
-        };
-        return captions[screenshotName] || screenshotName;
-    }
-
-    showExitMessage() {
-        const exitMessage = `
-$ echo "Thanks for visiting sshPilot!"
-Thanks for visiting sshPilot!
-$ echo "Don't forget to download and try it out!"
-Don't forget to download and try it out!
-$ echo "Goodbye! 👋"
-Goodbye! 👋
-        `;
-        
-        // Create a new terminal line with exit message
-        const terminalContent = document.querySelector('.terminal-content');
-        const exitSection = document.createElement('div');
-        exitSection.className = 'terminal-section';
-        exitSection.innerHTML = `
-            <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">exit</span>
-            </div>
-            <div class="terminal-output">
-                <pre style="color: var(--text-secondary);">${exitMessage}</pre>
-            </div>
-        `;
-        
-        // Hide current section and show exit message
-        document.getElementById(this.currentSection).classList.add('hidden');
-        terminalContent.appendChild(exitSection);
-        
-        // Type the exit command
-        const commandElement = exitSection.querySelector('.command');
-        this.typeText(commandElement, 'exit', () => {
-            // After typing exit, show the message
-            setTimeout(() => {
-                const output = exitSection.querySelector('.terminal-output');
-                output.style.opacity = '0';
-                output.style.transition = 'opacity 0.5s ease-in-out';
-                
-                setTimeout(() => {
-                    output.style.opacity = '1';
-                }, 100);
-            }, 500);
-        });
-    }
-
-    minimizeTerminal() {
-        const container = document.querySelector('.terminal-container');
-        container.style.transform = 'scale(0.1)';
-        container.style.opacity = '0';
-        container.style.transition = 'all 0.3s ease-in-out';
-        
-        setTimeout(() => {
-            container.style.transform = 'scale(1)';
-            container.style.opacity = '1';
-        }, 300);
-    }
-
-    maximizeTerminal() {
-        const container = document.querySelector('.terminal-container');
-        container.style.maxWidth = container.style.maxWidth === '100vw' ? '1200px' : '100vw';
-        container.style.margin = container.style.maxWidth === '100vw' ? '20px auto' : '0';
-        container.style.borderRadius = container.style.maxWidth === '100vw' ? '8px' : '0';
-        container.style.transition = 'all 0.3s ease-in-out';
+    toggleTheme() {
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.applyTheme(newTheme);
     }
 }
 
-// Initialize terminal interface when DOM is loaded
+// Initialize theme manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new TerminalInterface();
+    new ThemeManager();
 });
 
-// Add some retro terminal effects
+// Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', () => {
-    // Add CRT scan lines effect
-    const scanLines = document.createElement('div');
-    scanLines.className = 'scan-lines';
-    scanLines.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            transparent 50%,
-            rgba(0, 255, 0, 0.02) 50%
-        );
-        background-size: 100% 4px;
-        pointer-events: none;
-        z-index: 9999;
-    `;
-    document.body.appendChild(scanLines);
-
-    // Add subtle flicker effect
-    setInterval(() => {
-        const flicker = Math.random() * 0.1 + 0.95;
-        document.body.style.filter = `brightness(${flicker})`;
-    }, 100);
-
-    // Add terminal startup sound effect (optional)
-    const startupSound = () => {
-        // Create a simple beep sound using Web Audio API
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-        oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
-        
-        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
-        
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.2);
-    };
-
-    // Uncomment the line below to enable startup sound
-    // startupSound();
-});
-
-// Add retro cursor effect
-document.addEventListener('DOMContentLoaded', () => {
-    const cursors = document.querySelectorAll('.input-cursor');
-    cursors.forEach(cursor => {
-        cursor.style.animation = 'blink 1s infinite';
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
 });
 
-// Add typing sound effect (optional)
-function playTypingSound() {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.setValueAtTime(2000, audioContext.currentTime);
-    gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.05);
-}
+// Add some subtle animations
+document.addEventListener('DOMContentLoaded', () => {
+    // Fade in elements on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-// Export for potential use
-window.TerminalInterface = TerminalInterface;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe sections for fade-in effect
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+    });
+});
+
+// Add loading state for images
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    images.forEach(img => {
+        img.addEventListener('load', () => {
+            img.style.opacity = '1';
+        });
+        
+        img.addEventListener('error', () => {
+            img.style.opacity = '0.5';
+            img.style.filter = 'grayscale(100%)';
+        });
+        
+        // Set initial state
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.3s ease, filter 0.3s ease';
+    });
+});
+
+// Add focus management for better accessibility
+document.addEventListener('DOMContentLoaded', () => {
+    // Skip to main content link (for screen readers)
+    const skipLink = document.createElement('a');
+    skipLink.href = '#about';
+    skipLink.textContent = 'Skip to main content';
+    skipLink.className = 'skip-link';
+    skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--accent);
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 1000;
+        transition: top 0.3s;
+    `;
+    
+    skipLink.addEventListener('focus', () => {
+        skipLink.style.top = '6px';
+    });
+    
+    skipLink.addEventListener('blur', () => {
+        skipLink.style.top = '-40px';
+    });
+    
+    document.body.insertBefore(skipLink, document.body.firstChild);
+});
+
+// Add some old-school touches
+document.addEventListener('DOMContentLoaded', () => {
+    // Add a subtle text selection effect
+    document.addEventListener('selectionchange', () => {
+        const selection = window.getSelection();
+        if (selection.toString().length > 0) {
+            document.body.style.cursor = 'text';
+        } else {
+            document.body.style.cursor = 'default';
+        }
+    });
+    
+    // Add a simple "under construction" effect for fun
+    const addConstructionEffect = () => {
+        const constructionText = document.createElement('div');
+        constructionText.textContent = '🚧 Built with monospace fonts 🚧';
+        constructionText.style.cssText = `
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0.8;
+            z-index: 1000;
+            pointer-events: none;
+        `;
+        document.body.appendChild(constructionText);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            constructionText.remove();
+        }, 3000);
+    };
+    
+    // Show construction effect on first visit
+    if (!localStorage.getItem('sshpilot-visited')) {
+        setTimeout(addConstructionEffect, 1000);
+        localStorage.setItem('sshpilot-visited', 'true');
+    }
+});
