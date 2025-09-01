@@ -126,10 +126,26 @@ li {
 
 #features li {
     color: #fff;
+    margin-bottom: 16px;
 }
 
 #features strong {
     color: #fff;
+}
+
+/* About section styling */
+#about {
+    background: #f5f5f5;
+    color: #333;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 30px 0;
+    border: 1px solid #ddd;
+}
+
+#about h2 {
+    color: #333;
+    border-bottom: 2px solid #333;
 }
 
 /* Links */
