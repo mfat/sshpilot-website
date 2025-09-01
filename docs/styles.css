@@ -106,6 +106,32 @@ li {
     margin-bottom: 8px;
 }
 
+/* Features section styling */
+#features {
+    background: #000;
+    color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 30px 0;
+}
+
+#features h2 {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+#features ul {
+    color: #fff;
+}
+
+#features li {
+    color: #fff;
+}
+
+#features strong {
+    color: #fff;
+}
+
 /* Links */
 a {
     color: #0066cc;
