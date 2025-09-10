@@ -47,13 +47,29 @@
             <p>User-friendly, modern SSH Connection Manager</p>
         </header>
 
-        <nav>
-            <a href="#about">About</a> |
-            <a href="#features">Features</a> |
-            <a href="#screenshots">Screenshots</a> |
-            <a href="#download">Download</a> |
-            <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
-        </nav>
+         <nav>
+             <div class="nav-desktop">
+                 <a href="#about">About</a> |
+                 <a href="#features">Features</a> |
+                 <a href="#screenshots">Screenshots</a> |
+                 <a href="#download">Download</a> |
+                 <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+             </div>
+             <div class="nav-mobile">
+                 <button class="hamburger" id="hamburger">
+                     <span></span>
+                     <span></span>
+                     <span></span>
+                 </button>
+                 <div class="nav-menu" id="nav-menu">
+                     <a href="#about">About</a>
+                     <a href="#features">Features</a>
+                     <a href="#screenshots">Screenshots</a>
+                     <a href="#download">Download</a>
+                     <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+                 </div>
+             </div>
+         </nav>
 
                 
 
@@ -142,42 +158,63 @@
          </footer>
      </div>
 
-     <script>
-     (async () => {
-         const repo = "mfat/sshpilot";
-         try {
-             const r = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
-             const rel = await r.json();
-             const assets = rel.assets || [];
-             const pick = rx => assets.find(a => rx.test(a.name));
+      <script>
+      // Hamburger menu functionality
+      document.addEventListener('DOMContentLoaded', function() {
+          const hamburger = document.getElementById('hamburger');
+          const navMenu = document.getElementById('nav-menu');
+          
+          hamburger.addEventListener('click', function() {
+              hamburger.classList.toggle('active');
+              navMenu.classList.toggle('active');
+          });
+          
+          // Close menu when clicking on a link
+          const navLinks = navMenu.querySelectorAll('a');
+          navLinks.forEach(link => {
+              link.addEventListener('click', function() {
+                  hamburger.classList.remove('active');
+                  navMenu.classList.remove('active');
+              });
+          });
+      });
 
-             const dmg = pick(/\.dmg$/i);
-             const deb = pick(/\.deb$/i);
-             const rpm = pick(/\.rpm$/i);
-             const fallback = rel.html_url;
+      // Download functionality
+      (async () => {
+          const repo = "mfat/sshpilot";
+          try {
+              const r = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+              const rel = await r.json();
+              const assets = rel.assets || [];
+              const pick = rx => assets.find(a => rx.test(a.name));
 
-             const byOS = () => {
-                 const ua = navigator.userAgent;
-                 if (/Mac/i.test(ua)) return dmg?.browser_download_url || fallback;
-                 if (/Ubuntu|Debian|Mint|elementary|Pop!_OS|Linux/i.test(ua)) return deb?.browser_download_url || rpm?.browser_download_url || fallback;
-                 return rpm?.browser_download_url || deb?.browser_download_url || fallback;
-             };
+              const dmg = pick(/\.dmg$/i);
+              const deb = pick(/\.deb$/i);
+              const rpm = pick(/\.rpm$/i);
+              const fallback = rel.html_url;
 
-             const dlAuto = document.getElementById("dl-auto");
-             if (dlAuto) dlAuto.href = byOS();
-             
-             const dlMac = document.getElementById("dl-mac");
-             if (dlMac && dmg) dlMac.href = dmg.browser_download_url;
-             
-             const dlDeb = document.getElementById("dl-deb");
-             if (dlDeb && deb) dlDeb.href = deb.browser_download_url;
-             
-             const dlRpm = document.getElementById("dl-rpm");
-             if (dlRpm && rpm) dlRpm.href = rpm.browser_download_url;
-         } catch (error) {
-             console.error('Failed to fetch release data:', error);
-         }
-     })();
-     </script>
+              const byOS = () => {
+                  const ua = navigator.userAgent;
+                  if (/Mac/i.test(ua)) return dmg?.browser_download_url || fallback;
+                  if (/Ubuntu|Debian|Mint|elementary|Pop!_OS|Linux/i.test(ua)) return deb?.browser_download_url || rpm?.browser_download_url || fallback;
+                  return rpm?.browser_download_url || deb?.browser_download_url || fallback;
+              };
+
+              const dlAuto = document.getElementById("dl-auto");
+              if (dlAuto) dlAuto.href = byOS();
+              
+              const dlMac = document.getElementById("dl-mac");
+              if (dlMac && dmg) dlMac.href = dmg.browser_download_url;
+              
+              const dlDeb = document.getElementById("dl-deb");
+              if (dlDeb && deb) dlDeb.href = deb.browser_download_url;
+              
+              const dlRpm = document.getElementById("dl-rpm");
+              if (dlRpm && rpm) dlRpm.href = rpm.browser_download_url;
+          } catch (error) {
+              console.error('Failed to fetch release data:', error);
+          }
+      })();
+      </script>
  </body>
  </html>
