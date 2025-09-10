@@ -109,50 +109,12 @@
              </section>
         </main>
 
-         <footer>
-             
-             <p>Free software (GPL v3 license)</p>
-             <p>Support: Bitcoin: bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</p>
-             <p>Doge: DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</p>
-         </footer>
-     </div>
-
-     <script>
-     (async () => {
-         const repo = "mfat/sshpilot";
-         try {
-             const r = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
-             const rel = await r.json();
-             const assets = rel.assets || [];
-             const pick = rx => assets.find(a => rx.test(a.name));
-
-             const dmg = pick(/\.dmg$/i);
-             const deb = pick(/\.deb$/i);
-             const rpm = pick(/\.rpm$/i);
-             const fallback = rel.html_url;
-
-             const byOS = () => {
-                 const ua = navigator.userAgent;
-                 if (/Mac/i.test(ua)) return dmg?.browser_download_url || fallback;
-                 if (/Ubuntu|Debian|Mint|elementary|Pop!_OS|Linux/i.test(ua)) return deb?.browser_download_url || rpm?.browser_download_url || fallback;
-                 return rpm?.browser_download_url || deb?.browser_download_url || fallback;
-             };
-
-             const dlAuto = document.getElementById("dl-auto");
-             if (dlAuto) dlAuto.href = byOS();
-             
-             const dlMac = document.getElementById("dl-mac");
-             if (dlMac && dmg) dlMac.href = dmg.browser_download_url;
-             
-             const dlDeb = document.getElementById("dl-deb");
-             if (dlDeb && deb) dlDeb.href = deb.browser_download_url;
-             
-             const dlRpm = document.getElementById("dl-rpm");
-             if (dlRpm && rpm) dlRpm.href = rpm.browser_download_url;
-         } catch (error) {
-             console.error('Failed to fetch release data:', error);
-         }
-     })();
-     </script>
- </body>
- </html>
+        <footer>
+            
+            <p>Free software (GPL v3 license)</p>
+            <p>Support: Bitcoin: bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</p>
+            <p>Doge: DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</p>
+        </footer>
+    </div>
+</body>
+</html>
