@@ -47,6 +47,50 @@ body {
     align-items: center;
 }
 
+/* GitHub stats */
+.github-stats {
+    margin: 20px 0 30px 0;
+    text-align: center;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #24292e;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid #24292e;
+}
+
+.github-link:hover {
+    background: #0366d6;
+    border-color: #0366d6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.github-icon {
+    flex-shrink: 0;
+}
+
+.github-text {
+    font-size: 13px;
+}
+
+.github-stars {
+    background: rgba(255,255,255,0.2);
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
 
 
 /* Headers */
@@ -275,8 +319,220 @@ footer {
     color: #666;
 }
 
+.footer-links {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #0066cc;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
 footer p {
     margin-bottom: 5px;
+}
+
+/* Support section */
+.support-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.support-section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.crypto-addresses {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.crypto-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f8f9fa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.crypto-item:hover {
+    background: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.crypto-icon {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f7931a;
+    min-width: 24px;
+    text-align: center;
+}
+
+.crypto-item:last-child .crypto-icon {
+    color: #c2a633;
+}
+
+.crypto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.crypto-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.crypto-address {
+    font-size: 12px;
+    color: #6c757d;
+    font-family: 'Courier New', monospace;
+    word-break: break-all;
+}
+
+/* Download buttons */
+.download-btn {
+    display: inline-block;
+    background-color: #3584e4;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+}
+
+.download-btn:hover {
+    background-color: #1c71d8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(53, 132, 228, 0.3);
+}
+
+.download-btn:focus {
+    outline: 2px solid #3584e4;
+    outline-offset: 2px;
+}
+
+/* Platform download buttons */
+.download-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.download-platform-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    color: #333;
+    padding: 16px 20px;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 2px solid #e1e5e9;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-platform-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.download-platform-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-color: #3584e4;
+}
+
+.download-platform-btn:hover::before {
+    opacity: 1;
+}
+
+.download-platform-btn:focus {
+    outline: 2px solid #3584e4;
+    outline-offset: 2px;
+}
+
+.platform-logo {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.platform-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.platform-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.platform-format {
+    font-size: 12px;
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+/* Platform-specific styling */
+.debian-btn:hover {
+    border-color: #A81D33;
+    background: linear-gradient(135deg, #fff 0%, #fef7f7 100%);
+}
+
+.fedora-btn:hover {
+    border-color: #0B57A4;
+    background: linear-gradient(135deg, #fff 0%, #f7f9fc 100%);
+}
+
+.arch-btn:hover {
+    border-color: #1793D1;
+    background: linear-gradient(135deg, #fff 0%, #f7fbff 100%);
+}
+
+.mac-btn:hover {
+    border-color: #000;
+    background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
 }
 
 /* Responsive */
@@ -300,5 +556,19 @@ footer p {
     
     .nav-mobile {
         display: block;
+    }
+    
+    .download-buttons {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .download-platform-btn {
+        padding: 14px 16px;
+    }
+    
+    .platform-logo {
+        width: 28px;
+        height: 28px;
     }
 }
