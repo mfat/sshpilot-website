@@ -510,6 +510,11 @@ footer p {
     margin-right: auto;
 }
 
+.flathub-badge {
+    margin-top: 24px;
+    text-align: center;
+}
+
 .download-platform-btn {
     display: flex;
     align-items: center;
