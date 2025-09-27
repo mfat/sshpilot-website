@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sshPilot - User-friendly SSH Connection Manager</title>
-    <meta name="description" content="sshPilot is a user-friendly, modern and lightweight SSH connection manager, with an integrated terminal. An alternative to Putty and Termius.">
+    <title>SSH Pilot - User-friendly SSH Connection Manager</title>
+    <meta name="description" content="SSH Pilot is a user-friendly, modern and lightweight SSH connection manager, with an integrated terminal. An alternative to Putty and Termius.">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="io.github.mfat.sshpilot.svg">
     <style>
@@ -19,6 +19,7 @@
             transition: all 0.2s ease-in-out;
             border: none;
             cursor: pointer;
+            margin-top: 10px;
         }
         
         .download-btn:hover {
@@ -32,7 +33,7 @@
             outline-offset: 2px;
         }
     </style>
-    <meta property="og:title" content="sshPilot - SSH Connection Manager">
+    <meta property="og:title" content="SSH Pilot - SSH Connection Manager">
     <meta property="og:description" content="User-friendly SSH connection manager with integrated terminal">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mfat.github.io/sshpilot/">
@@ -41,17 +42,17 @@
     <div class="page">
          <header>
              <div class="header-content">
-                 <img src="io.github.mfat.sshpilot.svg" alt="sshPilot Logo" class="header-icon">
-                 <h1>sshPilot</h1>
+                 <img src="io.github.mfat.sshpilot.svg" alt="SSH Pilot Logo" class="header-icon">
+                 <h1>SSH Pilot</h1>
              </div>
              <p>User-friendly, modern SSH Connection Manager</p>
          </header>
 
          <nav>
              <div class="nav-desktop">
+                 <a href="#about">About</a> |
                  <a href="#screenshots">Screenshots</a> |
                  <a href="#download">Download</a> |
-                 <a href="#about">About</a> |
                  <a href="#features">Features</a> |
                  <a href="reviews.html">Reviews</a> |
                  <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
@@ -63,9 +64,9 @@
                      <span></span>
                  </button>
                  <div class="nav-menu" id="nav-menu">
+                     <a href="#about">About</a>
                      <a href="#screenshots">Screenshots</a>
                      <a href="#download">Download</a>
-                     <a href="#about">About</a>
                      <a href="#features">Features</a>
                      <a href="reviews.html">Reviews</a>
                      <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
@@ -76,6 +77,13 @@
                 
 
         <main>
+            <section id="about">
+                <h2>About</h2>
+                <p>SSH Pilot is a user-friendly, lightweight SSH connection manager with an integrated terminal.</p>
+                <p>No more remembering host aliases or complex SSH commands to manage your machines, copy keys or set up port forwarding.</p>
+                <a href="#download" class="download-btn">Get it now</a>
+            </section>
+
             <section id="screenshots">
                 <h2>Screenshots</h2>
                 <div class="screenshots">
@@ -109,7 +117,7 @@
             <section id="download">
                 <h2>Download</h2>
                 <h3>Latest Release</h3>
-                <p>sshPilot is currently available for GNU/Linux and macOS. Download the latest stable version for your platform</p>
+                <p>SSH Pilot is currently available for GNU/Linux and macOS. Download the latest stable version for your platform</p>
                 <div>
                     <div class="download-buttons">
                         <a id="dl-deb" href="#" class="download-platform-btn debian-btn">
@@ -150,13 +158,6 @@
                     </div>
                 </div>
             </section>
-
-            <section id="about">
-                <h2>About</h2>
-                <p>sshPilot is a user-friendly, lightweight SSH connection manager with an integrated terminal.</p>
-                <p>No more remembering host aliases or complex SSH commands to manage your machines, copy keys or set up port forwarding.</p>
-            </section>
-
 
             <section id="features">
                 <h2>Features</h2>
