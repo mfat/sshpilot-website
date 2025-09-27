@@ -1,5 +1,6 @@
 (function () {
     const scheduleLayout = (() => {
+
         let rafId = null;
         return (callback) => {
             if (rafId !== null) return;
@@ -138,12 +139,14 @@
 
         if (typeof ResizeObserver !== 'undefined') {
             const resizeObserver = new ResizeObserver(runLayout);
+
             resizeObserver.observe(gallery);
         }
 
         if (typeof MutationObserver !== 'undefined') {
             const mutationObserver = new MutationObserver(() => {
                 waitForImages(frames()).then(runLayout);
+
             });
             mutationObserver.observe(gallery, { childList: true, subtree: true });
         }
@@ -153,6 +156,7 @@
         const gallery = document.querySelector('.screenshots-gallery');
         if (gallery) {
             initialiseJustifiedGallery(gallery);
+
         }
     });
 })();
