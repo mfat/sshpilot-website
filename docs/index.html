@@ -175,7 +175,7 @@
 
          <footer>
              <div class="footer-links">
-                 <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Online Help</a> |
+                 <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a> |
                  <a href="https://github.com/mfat/sshpilot/issues" target="_blank">Issues</a> |
                  <a href="https://github.com/mfat/sshpilot/discussions" target="_blank">Community</a>
              </div>
@@ -404,8 +404,31 @@
           goToSlide(currentSlide - 1);
       }
 
-      // Auto-play carousel
-      setInterval(nextSlide, 5000); // Change slide every 5 seconds
+      // Auto-play carousel with hover pause functionality
+      let carouselInterval;
+      
+      function startCarousel() {
+          carouselInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+      }
+      
+      function stopCarousel() {
+          if (carouselInterval) {
+              clearInterval(carouselInterval);
+              carouselInterval = null;
+          }
+      }
+      
+      // Start auto-play
+      startCarousel();
+      
+      // Pause on hover, resume on mouse leave
+      document.addEventListener('DOMContentLoaded', function() {
+          const carouselWrapper = document.querySelector('.carousel-wrapper');
+          if (carouselWrapper) {
+              carouselWrapper.addEventListener('mouseenter', stopCarousel);
+              carouselWrapper.addEventListener('mouseleave', startCarousel);
+          }
+      });
 
       // Lightbox functions (global scope)
       let currentImageIndex = 0;
