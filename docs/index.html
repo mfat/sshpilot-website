@@ -48,75 +48,64 @@
              <p>User-friendly, modern SSH Connection Manager</p>
          </header>
 
-         <nav>
-             <div class="nav-desktop">
-                 <a href="#about">About</a> |
-                 <a href="#screenshots">Screenshots</a> |
-                 <a href="#download">Download</a> |
-                 <a href="#features">Features</a> |
-                 <a href="reviews.html">Reviews</a> |
-                 <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
-             </div>
-             <div class="nav-mobile">
-                 <button class="hamburger" id="hamburger">
-                     <span></span>
-                     <span></span>
-                     <span></span>
-                 </button>
-                 <div class="nav-menu" id="nav-menu">
-                     <a href="#about">About</a>
-                     <a href="#screenshots">Screenshots</a>
-                     <a href="#download">Download</a>
-                     <a href="#features">Features</a>
-                     <a href="reviews.html">Reviews</a>
-                     <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
-                 </div>
-             </div>
-         </nav>
+            <nav>
+                <div class="nav-desktop">
+                    <a href="#about">About</a> |
+                    <a href="#download">Download</a> |
+                    <a href="#features">Features</a> |
+                    <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a> |
+                    <a href="reviews.html">Reviews</a> |
+                    <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+                </div>
+                <div class="nav-mobile">
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="nav-menu" id="nav-menu">
+                        <a href="#about">About</a>
+                        <a href="#download">Download</a>
+                        <a href="#features">Features</a>
+                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
+                        <a href="reviews.html">Reviews</a>
+                        <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </nav>
 
                 
 
-        <main>
+    <main>
             <section id="about">
                 <h2>About</h2>
                 <p>SSH Pilot is a user-friendly, lightweight SSH connection manager with an integrated terminal.</p>
                 <p>No more remembering host aliases or complex SSH commands to manage your machines, copy keys or set up port forwarding.</p>
                 <a href="#download" class="download-btn">Get it now</a>
-            </section>
+        </section>
 
             <section id="screenshots">
                 <h2>Screenshots</h2>
-                <p>Everything under <code>screenshots/</code> renders here automatically.</p>
-                <div class="gallery-wrap">
-                    <div class="gallery" aria-label="Screenshot gallery">
-                        <a class="tile" href="screenshots/main-window.png" target="_blank" rel="noopener">
-                            <img src="screenshots/main-window.png" alt="Main Window" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/connection-settings.png" target="_blank" rel="noopener">
-                            <img src="screenshots/connection-settings.png" alt="Connection Settings" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/terminal-settings.png" target="_blank" rel="noopener">
-                            <img src="screenshots/terminal-settings.png" alt="Terminal Settings" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/preferences.png" target="_blank" rel="noopener">
-                            <img src="screenshots/preferences.png" alt="Preferences" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/htop.png" target="_blank" rel="noopener">
-                            <img src="screenshots/htop.png" alt="Terminal with htop" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/advanced-config.png" target="_blank" rel="noopener">
-                            <img src="screenshots/advanced-config.png" alt="Advanced Configuration" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/commands.png" target="_blank" rel="noopener">
-                            <img src="screenshots/commands.png" alt="Commands" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/custom-terminal.png" target="_blank" rel="noopener">
-                            <img src="screenshots/custom-terminal.png" alt="Custom Terminal" loading="lazy">
-                        </a>
-                        <a class="tile" href="screenshots/ssh-settings.png" target="_blank" rel="noopener">
-                            <img src="screenshots/ssh-settings.png" alt="SSH Settings" loading="lazy">
-                        </a>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <button class="carousel-btn carousel-prev" id="carousel-prev">&#8249;</button>
+                        <div class="carousel" id="carousel">
+                            <!-- Screenshots will be loaded dynamically here -->
                     </div>
+                        <button class="carousel-btn carousel-next" id="carousel-next">&#8250;</button>
+                    </div>
+                    <div class="carousel-indicators" id="carousel-indicators">
+                        <!-- Dots will be generated here -->
+                    </div>
+                </div>
+                
+                <!-- Lightbox modal -->
+                <div id="lightbox" class="lightbox" style="display: none;">
+                    <span class="lightbox-close">&times;</span>
+                    <button class="lightbox-prev" id="lightbox-prev">&#8249;</button>
+                    <button class="lightbox-next" id="lightbox-next">&#8250;</button>
+                    <img id="lightbox-img" src="" alt="">
+                    <div class="lightbox-caption" id="lightbox-caption"></div>
                 </div>
             </section>
 
@@ -138,32 +127,32 @@
                             <div class="platform-info">
                                 <span class="platform-name">Fedora/RHEL</span>
                                 <span class="platform-format">.rpm</span>
-                            </div>
+                </div>
                         </a>
                         <a href="https://aur.archlinux.org/packages/sshpilot" target="_blank" class="download-platform-btn arch-btn">
                             <img src="logos/arch.svg" alt="Arch Linux" class="platform-logo">
                             <div class="platform-info">
                                 <span class="platform-name">Arch Linux</span>
                                 <span class="platform-format">AUR</span>
-                            </div>
+                        </div>
                         </a>
                         <a href="https://flathub.org/en/apps/io.github.mfat.sshpilot" target="_blank" rel="noopener" class="download-platform-btn flatpak-btn">
                             <img src="logos/flathub.svg" alt="Flatpak" class="platform-logo">
                             <div class="platform-info">
                                 <span class="platform-name">Flatpak</span>
                                 <span class="platform-format">Flathub</span>
-                            </div>
+                    </div>
                         </a>
                         <a id="dl-mac" href="#" class="download-platform-btn mac-btn">
                             <img src="logos/apple.svg" alt="macOS" class="platform-logo">
                             <div class="platform-info">
                                 <span class="platform-name">macOS</span>
                                 <span class="platform-format">.dmg</span>
-                            </div>
-                        </a>
                     </div>
+                        </a>
                 </div>
-            </section>
+            </div>
+        </section>
 
             <section id="features">
                 <h2>Features</h2>
@@ -196,7 +185,7 @@
                      <span class="github-text">Star on GitHub</span>
                      <span id="github-stars" class="github-stars">⭐</span>
                  </a>
-             </div>
+                    </div>
              <p><a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">Free software (GPL v3 license)</a></p>
              
              <div class="support-section">
@@ -207,17 +196,17 @@
                          <div class="crypto-info">
                              <span class="crypto-name">Bitcoin</span>
                              <span class="crypto-address">bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</span>
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                      <div class="crypto-item">
                          <span class="crypto-icon">Ð</span>
                          <div class="crypto-info">
                              <span class="crypto-name">Dogecoin</span>
                              <span class="crypto-address">DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</span>
                          </div>
-                     </div>
-                 </div>
-             </div>
+                    </div>
+                </div>
+            </div>
          </footer>
      </div>
 
@@ -293,6 +282,226 @@
               console.error('Failed to fetch release data:', error);
           }
       })();
+
+      // Carousel functionality
+      let currentSlide = 0;
+      let slides = [];
+
+      // Dynamic carousel loader
+      (async () => {
+          const carousel = document.getElementById('carousel');
+          const indicators = document.getElementById('carousel-indicators');
+          if (!carousel || !indicators) return;
+
+          // Function to create slide element
+          function createSlide(filename, index) {
+              const altText = filename
+                  .replace(/\.(png|jpg|jpeg|gif|webp)$/i, '') // Remove extension
+                  .replace(/-/g, ' ') // Replace hyphens with spaces
+                  .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize words
+
+              return `
+                  <div class="carousel-slide" onclick="openLightbox('screenshots/${filename}', '${altText}')">
+                      <img src="screenshots/${filename}" alt="${altText}" loading="lazy" onerror="this.parentElement.remove()">
+                      <div class="carousel-slide-caption">${altText}</div>
+                </div>
+              `;
+          }
+
+          // Function to create indicator
+          function createIndicator(index) {
+              return `<button class="carousel-indicator ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></button>`;
+          }
+
+          // Simple list of all screenshot files - just add new ones here!
+          const allScreenshotFiles = [
+              'start-page.png',
+              'main-window.png',
+              'tab-overview.png',
+              'commands.png',
+              'connection-settings.png',
+              'file-manager.png',
+              'ssh-copy-id.png',
+              'terminal-settings.png'
+              // Add new screenshots here! Just add the filename like:
+              // 'your-new-screenshot.png',
+          ];
+
+          // Function to check if image exists and return existing ones
+          async function getExistingImages(fileList) {
+              const existingImages = [];
+              
+              for (const filename of fileList) {
+                  const imagePath = `screenshots/${filename}`;
+                  const exists = await new Promise((resolve) => {
+                      const img = new Image();
+                      img.onload = () => resolve(true);
+                      img.onerror = () => resolve(false);
+                      img.src = imagePath;
+                  });
+                  
+                  if (exists) {
+                      existingImages.push(filename);
+                  }
+              }
+              
+              return existingImages;
+          }
+
+          // Get all existing images from the list
+          const existingImages = await getExistingImages(allScreenshotFiles);
+
+          // Populate slides array for carousel navigation
+          slides = existingImages.map(filename => {
+              const altText = filename
+                  .replace(/\.(png|jpg|jpeg|gif|webp)$/i, '')
+                  .replace(/-/g, ' ')
+                  .replace(/\b\w/g, l => l.toUpperCase());
+              
+              return {
+                  src: `screenshots/${filename}`,
+                  caption: altText
+              };
+          });
+
+          // Populate imageList for lightbox navigation
+          imageList = slides;
+
+          // Render carousel slides and indicators
+          if (existingImages.length > 0) {
+              carousel.innerHTML = existingImages.map((filename, index) => createSlide(filename, index)).join('');
+              indicators.innerHTML = existingImages.map((_, index) => createIndicator(index)).join('');
+              console.log(`Carousel loaded ${existingImages.length} images:`, existingImages);
+          } else {
+              carousel.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">No screenshots found.</div>';
+          }
+      })();
+
+      // Carousel navigation functions
+      function goToSlide(index) {
+          const carousel = document.getElementById('carousel');
+          const indicators = document.querySelectorAll('.carousel-indicator');
+          
+          if (index < 0) index = slides.length - 1;
+          if (index >= slides.length) index = 0;
+          
+          currentSlide = index;
+          carousel.style.transform = `translateX(-${index * 100}%)`;
+          
+          // Update indicators
+          indicators.forEach((indicator, i) => {
+              indicator.classList.toggle('active', i === index);
+          });
+      }
+
+      function nextSlide() {
+          goToSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+          goToSlide(currentSlide - 1);
+      }
+
+      // Auto-play carousel
+      setInterval(nextSlide, 5000); // Change slide every 5 seconds
+
+      // Lightbox functions (global scope)
+      let currentImageIndex = 0;
+      let imageList = [];
+
+      window.openLightbox = function(imageSrc, caption) {
+          const lightbox = document.getElementById('lightbox');
+          const lightboxImg = document.getElementById('lightbox-img');
+          const lightboxCaption = document.getElementById('lightbox-caption');
+          
+          // Find the current image index
+          currentImageIndex = imageList.findIndex(img => img.src === imageSrc);
+          if (currentImageIndex === -1) currentImageIndex = 0;
+          
+          lightboxImg.src = imageSrc;
+          lightboxCaption.textContent = caption;
+          lightbox.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+          
+          updateNavigationButtons();
+      }
+
+      function updateNavigationButtons() {
+          const prevBtn = document.getElementById('lightbox-prev');
+          const nextBtn = document.getElementById('lightbox-next');
+          
+          prevBtn.disabled = currentImageIndex === 0;
+          nextBtn.disabled = currentImageIndex === imageList.length - 1;
+      }
+
+      function showPreviousImage() {
+          if (currentImageIndex > 0) {
+              currentImageIndex--;
+              const lightboxImg = document.getElementById('lightbox-img');
+              const lightboxCaption = document.getElementById('lightbox-caption');
+              
+              lightboxImg.src = imageList[currentImageIndex].src;
+              lightboxCaption.textContent = imageList[currentImageIndex].caption;
+              updateNavigationButtons();
+          }
+      }
+
+      function showNextImage() {
+          if (currentImageIndex < imageList.length - 1) {
+              currentImageIndex++;
+              const lightboxImg = document.getElementById('lightbox-img');
+              const lightboxCaption = document.getElementById('lightbox-caption');
+              
+              lightboxImg.src = imageList[currentImageIndex].src;
+              lightboxCaption.textContent = imageList[currentImageIndex].caption;
+              updateNavigationButtons();
+          }
+      }
+
+      function closeLightbox() {
+          const lightbox = document.getElementById('lightbox');
+          lightbox.style.display = 'none';
+          document.body.style.overflow = 'auto'; // Restore scrolling
+      }
+
+      // Add event listeners for lightbox and carousel
+      document.addEventListener('DOMContentLoaded', function() {
+          const lightbox = document.getElementById('lightbox');
+          const closeBtn = document.querySelector('.lightbox-close');
+          const prevBtn = document.getElementById('lightbox-prev');
+          const nextBtn = document.getElementById('lightbox-next');
+          const carouselPrevBtn = document.getElementById('carousel-prev');
+          const carouselNextBtn = document.getElementById('carousel-next');
+          
+          // Lightbox event listeners
+          closeBtn.addEventListener('click', closeLightbox);
+          prevBtn.addEventListener('click', showPreviousImage);
+          nextBtn.addEventListener('click', showNextImage);
+          
+          // Carousel event listeners
+          if (carouselPrevBtn) carouselPrevBtn.addEventListener('click', prevSlide);
+          if (carouselNextBtn) carouselNextBtn.addEventListener('click', nextSlide);
+          
+          // Close on background click
+          lightbox.addEventListener('click', function(e) {
+              if (e.target === lightbox) {
+                  closeLightbox();
+              }
+          });
+          
+          // Keyboard navigation
+          document.addEventListener('keydown', function(e) {
+              if (lightbox.style.display === 'flex') {
+                  if (e.key === 'Escape') {
+                      closeLightbox();
+                  } else if (e.key === 'ArrowLeft') {
+                      showPreviousImage();
+                  } else if (e.key === 'ArrowRight') {
+                      showNextImage();
+                  }
+              }
+          });
+      });
       </script>
- </body>
- </html>
+</body>
+</html>
