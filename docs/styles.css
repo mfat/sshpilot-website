@@ -360,20 +360,109 @@ a:hover {
     margin: 20px 0;
 }
 
-figure {
-    margin: 20px 0;
-    text-align: center;
+
+
+.screenshots-gallery {
+    --jg-target-row-height: 160px;
+    --jg-max-row-height: 190px;
+    --jg-gap: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--jg-gap);
+    padding: 22px;
+    border-radius: 22px;
+    border: 1px solid #dfe6f3;
+    background: linear-gradient(150deg, #f8fafc 0%, #eef2f7 100%);
+    box-shadow: 0 22px 42px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
 }
 
-figure img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ccc;
+.screenshots-gallery figure {
+    margin: 0;
+}
+
+.screenshot-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.08);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    flex: 0 0 auto;
+    display: block;
+    min-width: 140px;
+}
+
+.screenshot-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(148, 163, 184, 0.18), transparent 55%);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    pointer-events: none;
+}
+
+.screenshot-frame:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 32px rgba(15, 23, 42, 0.16);
+}
+
+.screenshot-frame:hover::after {
+    opacity: 1;
+}
+
+.screenshot-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: transform 0.25s ease;
+}
+
+.screenshot-frame:hover img {
+    transform: scale(1.02);
+}
+
+.screenshot-frame figcaption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 12px 16px 16px 16px;
+    font-weight: 600;
+    font-size: 0.85em;
+    letter-spacing: 0.01em;
+    color: #f8fafc;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.88));
+    pointer-events: none;
+    margin: 0;
 }
 
 figcaption {
     margin-top: 10px;
     font-weight: bold;
+}
+
+@media (max-width: 720px) {
+    .screenshots-gallery {
+        --jg-target-row-height: 150px;
+        --jg-max-row-height: 180px;
+        --jg-gap: 12px;
+        padding: 18px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .screenshots-gallery {
+        --jg-target-row-height: 135px;
+        --jg-max-row-height: 165px;
+        --jg-gap: 10px;
+        padding: 14px;
+        border-radius: 18px;
+    }
 }
 
 /* Footer */
