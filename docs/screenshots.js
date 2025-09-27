@@ -1,5 +1,6 @@
 (function () {
-    const scheduleMasonryUpdate = (function () {
+    const scheduleLayout = (() => {
+
         let rafId = null;
         return (callback) => {
             if (rafId !== null) return;
@@ -10,77 +11,142 @@
         };
     })();
 
-    function initialiseMasonry(gallery) {
-        if (!gallery) return;
-        const items = () => Array.from(gallery.querySelectorAll('.screenshot-frame'));
+    function getAspectRatio(frame) {
+        const img = frame.querySelector('img');
+        if (!img) {
+            return 1;
+        }
+        if (img.naturalWidth && img.naturalHeight) {
+            return img.naturalWidth / img.naturalHeight;
+        }
+        const rect = img.getBoundingClientRect();
+        if (rect.width && rect.height) {
+            return rect.width / rect.height;
+        }
+        return 1;
+    }
 
-        const getMaxSpan = (rowHeight, rowGap) => {
-            const maxHeight = parseFloat(getComputedStyle(gallery).getPropertyValue('--masonry-max-height'));
-            if (!maxHeight) {
-                return Infinity;
-            }
-            return Math.max(1, Math.round((maxHeight + rowGap) / (rowHeight + rowGap)));
-        };
+    function applyRowLayout(row, innerWidth, targetRowHeight, maxRowHeight, gap, isLastRow) {
+        if (!row.length) return;
+        const aspectSum = row.reduce((sum, item) => sum + item.ratio, 0);
+        if (!aspectSum) return;
+        const gapTotal = gap * Math.max(0, row.length - 1);
+        const widthAtTarget = aspectSum * targetRowHeight;
+        let scale = (innerWidth - gapTotal) / widthAtTarget;
+        const maxScale = maxRowHeight / targetRowHeight;
 
-        const clampImageHeight = (item) => {
-            const img = item.querySelector('img');
-            if (!img) return;
-            const styles = getComputedStyle(gallery);
-            const maxHeight = parseFloat(styles.getPropertyValue('--masonry-max-height'));
-            if (!maxHeight) {
-                img.style.removeProperty('max-height');
+        if (isLastRow) {
+            scale = Math.min(scale, 1);
+        }
+
+        if (!Number.isFinite(scale) || scale <= 0) {
+            scale = 1;
+        }
+
+        scale = Math.min(scale, maxScale);
+        const rowHeight = Math.max(1, targetRowHeight * scale);
+
+        row.forEach(({ frame, ratio }) => {
+            const width = rowHeight * ratio;
+            frame.style.width = `${width}px`;
+            frame.style.height = `${rowHeight}px`;
+        });
+    }
+
+    function layoutGallery(gallery) {
+        const styles = getComputedStyle(gallery);
+        const targetRowHeight = parseFloat(styles.getPropertyValue('--jg-target-row-height')) || 160;
+        const maxRowHeight = parseFloat(styles.getPropertyValue('--jg-max-row-height')) || targetRowHeight * 1.2;
+        const gap = parseFloat(styles.getPropertyValue('--jg-gap')) || parseFloat(styles.columnGap || styles.gap || 0) || 0;
+        const paddingLeft = parseFloat(styles.paddingLeft) || 0;
+        const paddingRight = parseFloat(styles.paddingRight) || 0;
+        const innerWidth = gallery.clientWidth - paddingLeft - paddingRight;
+        if (innerWidth <= 0) {
+            return;
+        }
+
+        const frames = Array.from(gallery.querySelectorAll('.screenshot-frame'));
+        if (!frames.length) {
+            return;
+        }
+
+        frames.forEach((frame) => {
+            frame.style.removeProperty('width');
+            frame.style.removeProperty('height');
+        });
+
+        let row = [];
+        let aspectAccumulator = 0;
+
+        frames.forEach((frame) => {
+            const ratio = getAspectRatio(frame);
+            if (!Number.isFinite(ratio) || ratio <= 0) {
                 return;
             }
-            img.style.maxHeight = `${maxHeight}px`;
-        };
 
-        const computeSpan = (item) => {
-            if (!item) return;
-            item.style.removeProperty('grid-row-end');
-            const styles = getComputedStyle(gallery);
-            const rowHeight = parseFloat(styles.getPropertyValue('--masonry-row-height')) || 8;
-            const rowGap = parseFloat(styles.rowGap || styles.getPropertyValue('row-gap')) || 0;
-            const maxSpan = getMaxSpan(rowHeight, rowGap);
-            clampImageHeight(item);
-            const itemHeight = item.getBoundingClientRect().height;
-            if (!itemHeight) return;
-            const span = Math.max(1, Math.round((itemHeight + rowGap) / (rowHeight + rowGap)));
-            item.style.gridRowEnd = `span ${Math.min(span, maxSpan)}`;
-        };
+            row.push({ frame, ratio });
+            aspectAccumulator += ratio;
 
-        const updateAll = () => {
-            scheduleMasonryUpdate(() => {
-                items().forEach(computeSpan);
-            });
-        };
+            const expectedWidth = aspectAccumulator * targetRowHeight + gap * Math.max(0, row.length - 1);
+            if (expectedWidth >= innerWidth) {
+                const gapTotal = gap * Math.max(0, row.length - 1);
+                const scale = (innerWidth - gapTotal) / (aspectAccumulator * targetRowHeight);
+                const maxScale = maxRowHeight / targetRowHeight;
 
-        const observeImages = () => {
-            items().forEach((item) => {
-                const img = item.querySelector('img');
-                if (!img) return;
-                if (img.complete && img.naturalHeight !== 0) {
-                    computeSpan(item);
-                    return;
+                if (scale > maxScale && row.length > 1) {
+                    const lastItem = row.pop();
+                    aspectAccumulator -= lastItem.ratio;
+                    applyRowLayout(row, innerWidth, targetRowHeight, maxRowHeight, gap, false);
+                    row = [lastItem];
+                    aspectAccumulator = lastItem.ratio;
+                } else {
+                    applyRowLayout(row, innerWidth, targetRowHeight, maxRowHeight, gap, false);
+                    row = [];
+                    aspectAccumulator = 0;
                 }
-                img.addEventListener('load', () => computeSpan(item), { once: true });
-                img.addEventListener('error', () => computeSpan(item), { once: true });
+            }
+        });
+
+        if (row.length) {
+            applyRowLayout(row, innerWidth, targetRowHeight, maxRowHeight, gap, true);
+        }
+    }
+
+    function waitForImages(frames) {
+        return Promise.all(frames.map((frame) => {
+            const img = frame.querySelector('img');
+            if (!img) return Promise.resolve();
+            if (img.complete && img.naturalHeight !== 0) {
+                return Promise.resolve();
+            }
+            return new Promise((resolve) => {
+                img.addEventListener('load', resolve, { once: true });
+                img.addEventListener('error', resolve, { once: true });
             });
-        };
+        }));
+    }
 
-        observeImages();
-        updateAll();
+    function initialiseJustifiedGallery(gallery) {
+        if (!gallery) return;
 
-        window.addEventListener('resize', updateAll);
+        const runLayout = () => scheduleLayout(() => layoutGallery(gallery));
+
+        const frames = () => Array.from(gallery.querySelectorAll('.screenshot-frame'));
+
+        waitForImages(frames()).then(runLayout);
+
+        window.addEventListener('resize', runLayout);
 
         if (typeof ResizeObserver !== 'undefined') {
-            const resizeObserver = new ResizeObserver(updateAll);
+            const resizeObserver = new ResizeObserver(runLayout);
+
             resizeObserver.observe(gallery);
         }
 
         if (typeof MutationObserver !== 'undefined') {
             const mutationObserver = new MutationObserver(() => {
-                observeImages();
-                updateAll();
+                waitForImages(frames()).then(runLayout);
+
             });
             mutationObserver.observe(gallery, { childList: true, subtree: true });
         }
@@ -89,7 +155,8 @@
     document.addEventListener('DOMContentLoaded', () => {
         const gallery = document.querySelector('.screenshots-gallery');
         if (gallery) {
-            initialiseMasonry(gallery);
+            initialiseJustifiedGallery(gallery);
+
         }
     });
 })();

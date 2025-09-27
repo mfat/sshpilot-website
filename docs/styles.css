@@ -363,14 +363,14 @@ a:hover {
 
 
 .screenshots-gallery {
-    --masonry-row-height: 8px;
-    --masonry-max-height: 240px;
-    --masonry-gap: 16px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    grid-auto-rows: var(--masonry-row-height);
-    grid-auto-flow: dense;
-    gap: var(--masonry-gap);
+    --jg-target-row-height: 160px;
+    --jg-max-row-height: 190px;
+    --jg-gap: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--jg-gap);
+
     padding: 22px;
     border-radius: 22px;
     border: 1px solid #dfe6f3;
@@ -388,9 +388,11 @@ a:hover {
     overflow: hidden;
     border-radius: 16px;
     background: rgba(15, 23, 42, 0.08);
-    grid-row-end: span 1;
-    max-height: var(--masonry-max-height);
     transition: transform 0.18s ease, box-shadow 0.18s ease;
+    flex: 0 0 auto;
+    display: block;
+    min-width: 140px;
+
 }
 
 .screenshot-frame::after {
@@ -416,8 +418,9 @@ a:hover {
 .screenshot-frame img {
     display: block;
     width: 100%;
-    height: auto;
-    max-height: var(--masonry-max-height);
+    height: 100%;
+    object-fit: cover;
+
     border-radius: 16px;
     transition: transform 0.25s ease;
 }
@@ -447,10 +450,10 @@ figcaption {
 
 @media (max-width: 720px) {
     .screenshots-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        --masonry-row-height: 7px;
-        --masonry-max-height: 220px;
-        --masonry-gap: 14px;
+        --jg-target-row-height: 150px;
+        --jg-max-row-height: 180px;
+        --jg-gap: 12px;
+
         padding: 18px;
         border-radius: 20px;
     }
@@ -458,10 +461,10 @@ figcaption {
 
 @media (max-width: 480px) {
     .screenshots-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        --masonry-row-height: 6px;
-        --masonry-max-height: 200px;
-        --masonry-gap: 12px;
+        --jg-target-row-height: 135px;
+        --jg-max-row-height: 165px;
+        --jg-gap: 10px;
+
         padding: 14px;
         border-radius: 18px;
     }
