@@ -15,20 +15,21 @@ cp your-screenshot.png docs/screenshots/
 Run the update script to automatically update the website:
 
 ```bash
-python3 update_screenshots.py
+python3 docs/update_screenshots.py
 ```
 
 This script will:
 - Scan the `docs/screenshots/` directory for PNG files
 - Generate captions based on filenames (e.g., `main-window.png` → `Main Window`)
-- Update the `docs/screenshots.js` file automatically
+- Read optional overrides from `docs/screenshot_captions.json`
+- Update the `docs/screenshot_data.js` file automatically
 
 ### 3. Commit and Deploy
 Commit your changes and push to deploy:
 
 ```bash
 git add docs/screenshots/your-screenshot.png
-git add docs/screenshots.js
+git add docs/screenshot_data.js
 git commit -m "Add new screenshot: your-screenshot.png"
 git push origin main
 ```
@@ -48,15 +49,16 @@ The script automatically generates captions from filenames:
 - `port-forwarding.png` → "Port Forwarding"
 
 ### Manual Caption Override
-If you want custom captions, edit the `screenshotData` object in `docs/screenshots.js`:
+If you want custom captions, edit or create the `docs/screenshot_captions.json` file:
 
-```javascript
-const screenshotData = {
-    'main-window.png': 'Custom caption here',
-    'ssh-settings.png': 'Another custom caption',
-    // ... other screenshots
-};
+```json
+{
+    "main-window.png": "Custom caption here",
+    "ssh-settings.png": "Another custom caption"
+}
 ```
+
+After updating the JSON file, rerun the update script so the gallery picks up the change.
 
 ## Website Features
 
@@ -84,9 +86,12 @@ docs/
 │   ├── main-window.png
 │   ├── ssh-settings.png
 │   └── ...
-├── screenshots.js         # JavaScript for slideshow functionality
+├── screenshot_captions.json  # Optional caption overrides
+├── screenshot_data.js    # Auto-generated gallery data
+├── screenshots.js        # JavaScript that renders the gallery
 ├── styles.css            # CSS styles for screenshots
-└── index.html           # Main website with screenshot section
+├── update_screenshots.py # Script that refreshes the gallery data
+└── index.html            # Main website with screenshot section
 ```
 
 ## Troubleshooting
@@ -94,10 +99,10 @@ docs/
 ### Screenshots Not Appearing
 1. Ensure files are PNG format
 2. Check file permissions
-3. Run `python3 update_screenshots.py` to update the JavaScript
+3. Run `python3 docs/update_screenshots.py` to regenerate the gallery data
 
 ### Captions Not Updating
-1. Edit the `screenshotData` object in `docs/screenshots.js`
+1. Update `docs/screenshot_captions.json`
 2. Or rename the file to match the desired caption
 
 ### Slideshow Not Working
