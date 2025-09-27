@@ -1,6 +1,6 @@
-# sshPilot Website v2
+# SSH Pilot Website v2
 
-This is the development version of the sshPilot website. The current live version remains in the `docs/` directory.
+This is the development version of the SSH Pilot website. The current live version remains in the `docs/` directory.
 
 ## Development Setup
 

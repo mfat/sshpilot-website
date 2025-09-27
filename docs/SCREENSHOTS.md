@@ -1,6 +1,6 @@
 # Screenshots Management
 
-This document explains how to add and manage screenshots for the sshPilot website.
+This document explains how to add and manage screenshots for the SSH Pilot website.
 
 ## Adding New Screenshots
 
