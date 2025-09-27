@@ -510,11 +510,6 @@ footer p {
     margin-right: auto;
 }
 
-.flathub-badge {
-    margin-top: 24px;
-    text-align: center;
-}
-
 .download-platform-btn {
     display: flex;
     align-items: center;
@@ -604,6 +599,11 @@ footer p {
 .mac-btn:hover {
     border-color: #000;
     background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+}
+
+.flatpak-btn:hover {
+    border-color: #4A86CF;
+    background: linear-gradient(135deg, #fff 0%, #f5f9ff 100%);
 }
 
 /* Responsive */
