@@ -25,6 +25,17 @@ body {
 
 
 /* Header */
+.header-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.header-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 .header-content {
     display: flex;
     align-items: flex-end;
