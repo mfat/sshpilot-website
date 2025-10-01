@@ -273,6 +273,19 @@ li {
     border: 1px solid #e2e2e2;
 }
 
+.blog-intro {
+    margin-bottom: 15px;
+}
+
+.blog-status {
+    margin: 15px 0;
+    color: #555;
+}
+
+.blog-status.error {
+    color: #b00020;
+}
+
 .blog-list {
     display: grid;
     gap: 20px;
@@ -298,6 +311,28 @@ li {
 
 .blog-link {
     font-weight: 600;
+}
+
+.blog-content {
+    line-height: 1.7;
+}
+
+.blog-content pre {
+    background: #f6f8fa;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.95em;
+}
+
+.blog-content code {
+    background: #f6f8fa;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.blog-discussion {
+    margin-top: 20px;
 }
 
 /* Reviews section styling */
