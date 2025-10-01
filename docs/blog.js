@@ -1,19 +1,30 @@
 (function () {
-    const pageConfig = (document.body && document.body.dataset) || {};
-    const repoOwner = pageConfig.blogRepoOwner || 'mfat';
-    const repoName = pageConfig.blogRepoName || 'sshpilot';
-    const blogLabel = pageConfig.blogLabel || 'blog';
+    const DEFAULT_OWNER = 'mfat';
+    const DEFAULT_REPO = 'sshpilot';
+    const DEFAULT_LABEL = 'blog';
 
+    const pageConfig = (document.body && document.body.dataset) || {};
+    const repoOwner = pageConfig.blogRepoOwner || DEFAULT_OWNER;
+    const repoName = pageConfig.blogRepoName || DEFAULT_REPO;
+    const blogLabel = pageConfig.blogLabel || DEFAULT_LABEL;
     const blogLabelLower = blogLabel.toLowerCase();
 
-    const issuesUrl = new URL(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`);
-    issuesUrl.searchParams.set('state', 'all');
-    issuesUrl.searchParams.set('per_page', '20');
-    issuesUrl.searchParams.set('sort', 'created');
-    issuesUrl.searchParams.set('direction', 'desc');
-    const issuesEndpoint = issuesUrl.toString();
+    const fallbackRepoOwner = pageConfig.blogFallbackRepoOwner || DEFAULT_OWNER;
+    const fallbackRepoName = pageConfig.blogFallbackRepoName || DEFAULT_REPO;
+    const starsRepoOwner = pageConfig.blogStarsRepoOwner || fallbackRepoOwner;
+    const starsRepoName = pageConfig.blogStarsRepoName || fallbackRepoName;
 
-    const repoApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
+    const repoApiUrl = `https://api.github.com/repos/${starsRepoOwner}/${starsRepoName}`;
+    const shouldAttemptFallback = repoOwner !== fallbackRepoOwner || repoName !== fallbackRepoName;
+
+    function buildIssuesEndpoint(owner, name) {
+        const url = new URL(`https://api.github.com/repos/${owner}/${name}/issues`);
+        url.searchParams.set('state', 'all');
+        url.searchParams.set('per_page', '20');
+        url.searchParams.set('sort', 'created');
+        url.searchParams.set('direction', 'desc');
+        return url.toString();
+    }
 
 
     function setupNavigation() {
@@ -132,6 +143,36 @@
         return article;
     }
 
+    function filterIssues(issues) {
+        return (Array.isArray(issues) ? issues : [])
+            .filter(issue => !issue.pull_request)
+            .filter(issue => Array.isArray(issue.labels) && issue.labels.some(label => {
+                const labelName = typeof label === 'string' ? label : label.name;
+                return typeof labelName === 'string' && labelName.toLowerCase() === blogLabelLower;
+            }));
+    }
+
+    async function fetchRepoPosts(owner, name) {
+        const endpoint = buildIssuesEndpoint(owner, name);
+        const response = await fetch(endpoint, {
+            headers: {
+                Accept: 'application/vnd.github+json'
+            }
+        });
+
+        if (!response.ok) {
+            const error = new Error(`GitHub API responded with ${response.status}`);
+            error.status = response.status;
+            error.repoOwner = owner;
+            error.repoName = name;
+            throw error;
+        }
+
+        const issues = await response.json();
+        return filterIssues(issues);
+    }
+
+
     async function loadPosts() {
         const postsContainer = document.getElementById('blog-posts');
         const statusElement = document.getElementById('blog-status');
@@ -160,43 +201,54 @@
             }
         }
 
-        try {
-            setStatus(loadingMessage);
+        setStatus(loadingMessage);
 
-            const response = await fetch(issuesEndpoint, {
-                headers: {
-                    Accept: 'application/vnd.github+json'
+        const repoCandidates = [
+            { owner: repoOwner, name: repoName, isFallback: false }
+        ];
+
+        if (shouldAttemptFallback) {
+            repoCandidates.push({ owner: fallbackRepoOwner, name: fallbackRepoName, isFallback: true });
+        }
+
+        let lastError = null;
+        let hadSuccessfulRequest = false;
+
+        postsContainer.innerHTML = '';
+
+        for (const candidate of repoCandidates) {
+            try {
+                const posts = await fetchRepoPosts(candidate.owner, candidate.name);
+                hadSuccessfulRequest = true;
+
+                if (!posts.length) {
+                    continue;
                 }
-            });
 
-            if (!response.ok) {
-                throw new Error(`GitHub API responded with ${response.status}`);
-            }
+                if (candidate.isFallback) {
+                    console.warn(`Loaded blog posts from fallback repository ${candidate.owner}/${candidate.name}.`);
+                }
 
-            const issues = await response.json();
-            const posts = (Array.isArray(issues) ? issues : [])
-                .filter(issue => !issue.pull_request)
-                .filter(issue => Array.isArray(issue.labels) && issue.labels.some(label => {
-                    const labelName = typeof label === 'string' ? label : label.name;
-                    return typeof labelName === 'string' && labelName.toLowerCase() === blogLabelLower;
-                }));
-
-            postsContainer.innerHTML = '';
-
-            if (!posts.length) {
-                setStatus(emptyMessage);
+                setStatus('');
+                posts.forEach(issue => {
+                    postsContainer.appendChild(renderPost(issue));
+                });
                 return;
+            } catch (error) {
+                lastError = error;
+                console.error(`Failed to load blog posts from ${candidate.owner}/${candidate.name}:`, error);
             }
+        }
 
-            setStatus('');
+        if (hadSuccessfulRequest) {
+            setStatus(emptyMessage);
+            return;
+        }
 
-
-            posts.forEach(issue => {
-                postsContainer.appendChild(renderPost(issue));
-            });
-        } catch (error) {
-            console.error('Failed to load blog posts:', error);
+        if (lastError) {
             setStatus('We were unable to load the blog posts from GitHub at this time. Please try again later.', { isError: true });
+        } else {
+            setStatus(emptyMessage);
 
         }
     }
