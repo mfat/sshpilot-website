@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSH Pilot Reviews and Press Coverage</title>
-    <meta name="description" content="Discover what the community and tech press are saying about SSH Pilot, the user-friendly SSH connection manager.">
+    <title>SSH Pilot Blog</title>
+    <meta name="description" content="Read the latest updates and announcements for SSH Pilot, the user-friendly SSH connection manager.">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="io.github.mfat.sshpilot.svg">
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
+    <script src="blog.js" defer></script>
 </head>
 <body>
     <div class="page">
@@ -49,21 +51,14 @@
         </nav>
 
         <main>
-            <section id="reviews">
-                <h2>Reviews</h2>
-                <p>SSH PILOT has been review by a number of tech blogs.</p>
-
-                <div class="review-card">
-                    <h3>Korben</h3>
-                    <p class="review-summary">French tech blogger Korben highlights SSH Pilot&#39;s intuitive workflow for managing Linux connections and praises its integrated terminal experience.</p>
-                    <a class="review-link" href="https://korben.info/ssh-pilot-gestionnaire-connexions-linux.html" target="_blank" rel="noopener">Read the Korben article</a>
-                </div>
-
-                <div class="review-card">
-                    <h3>Linux und Ich</h3>
-                    <p class="review-summary">Linux und Ich presents SSH Pilot as a modern alternative to PuTTY and SecureCRT, emphasizing the streamlined interface and smart management tools.</p>
-                    <a class="review-link" href="https://linuxundich.de/gnu-linux/sshpilot-linux-alternative-putty-securecrt/" target="_blank" rel="noopener">Read the Linux und Ich review</a>
-                </div>
+            <section id="blog">
+                <h2>Blog</h2>
+                <p class="blog-intro">Updates, release notes, and development insights from the SSH Pilot project.</p>
+                <p id="blog-status" class="blog-status" data-empty-text="No blog posts available yet. Check back soon!">No blog posts available yet. Check back soon!</p>
+                <noscript>
+                    <p class="blog-status">JavaScript is required to load blog posts from GitHub. Please enable it to view the latest updates.</p>
+                </noscript>
+                <div id="blog-posts" class="blog-list" aria-live="polite"></div>
             </section>
         </main>
 
@@ -105,41 +100,5 @@
             </div>
         </footer>
     </div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    });
-
-    (async () => {
-        const repo = "mfat/sshpilot";
-        try {
-            const r = await fetch(`https://api.github.com/repos/${repo}`);
-            const data = await r.json();
-            const starsCount = data.stargazers_count;
-
-            const starsElement = document.getElementById("github-stars");
-            if (starsElement) {
-                starsElement.textContent = `⭐ ${starsCount.toLocaleString()}`;
-            }
-        } catch (error) {
-            console.error('Failed to fetch GitHub stars:', error);
-        }
-    })();
-    </script>
 </body>
 </html>
