@@ -10,7 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
     <script src="blog.js" defer></script>
 </head>
-<body>
+<body data-blog-repo-owner="mfat" data-blog-repo-name="sshpilot-website" data-blog-label="blog">
+
     <div class="page">
         <header>
             <a href="index.html" class="header-link">
@@ -54,7 +55,11 @@
             <section id="blog">
                 <h2>Blog</h2>
                 <p class="blog-intro">Updates, release notes, and development insights from the SSH Pilot project.</p>
-                <p id="blog-status" class="blog-status">Loading posts...</p>
+                <p id="blog-status" class="blog-status" data-empty-text="No blog posts available yet. Check back soon!">No blog posts available yet. Check back soon!</p>
+                <noscript>
+                    <p class="blog-status">JavaScript is required to load blog posts from GitHub. Please enable it to view the latest updates.</p>
+                </noscript>
+
                 <div id="blog-posts" class="blog-list" aria-live="polite"></div>
             </section>
         </main>

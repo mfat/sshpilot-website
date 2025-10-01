@@ -1,7 +1,9 @@
 (function () {
-    const repoOwner = 'mfat';
-    const repoName = 'sshpilot';
-    const blogLabel = 'blog';
+    const pageConfig = (document.body && document.body.dataset) || {};
+    const repoOwner = pageConfig.blogRepoOwner || 'mfat';
+    const repoName = pageConfig.blogRepoName || 'sshpilot';
+    const blogLabel = pageConfig.blogLabel || 'blog';
+
     const blogLabelLower = blogLabel.toLowerCase();
 
     const issuesUrl = new URL(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`);
@@ -13,7 +15,6 @@
 
     const repoApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
 
-  
 
     function setupNavigation() {
         const hamburger = document.getElementById('hamburger');
@@ -139,9 +140,29 @@
             return;
         }
 
+        const emptyMessage = statusElement.dataset.emptyText || 'No blog posts available yet. Check back soon!';
+        const loadingMessage = 'Loading posts...';
+
+        function setStatus(message, options) {
+            const opts = options || {};
+            statusElement.textContent = message;
+            if (message) {
+                statusElement.removeAttribute('aria-hidden');
+                statusElement.style.display = '';
+            } else {
+                statusElement.setAttribute('aria-hidden', 'true');
+                statusElement.style.display = 'none';
+            }
+            if (opts.isError) {
+                statusElement.classList.add('error');
+            } else {
+                statusElement.classList.remove('error');
+            }
+        }
+
         try {
-            statusElement.textContent = 'Loading posts...';
-            statusElement.classList.remove('error');
+            setStatus(loadingMessage);
+
             const response = await fetch(issuesEndpoint, {
                 headers: {
                     Accept: 'application/vnd.github+json'
@@ -160,23 +181,23 @@
                     return typeof labelName === 'string' && labelName.toLowerCase() === blogLabelLower;
                 }));
 
-
             postsContainer.innerHTML = '';
 
             if (!posts.length) {
-                statusElement.textContent = 'No blog posts available yet. Check back soon!';
+                setStatus(emptyMessage);
                 return;
             }
 
-            statusElement.textContent = '';
+            setStatus('');
+
 
             posts.forEach(issue => {
                 postsContainer.appendChild(renderPost(issue));
             });
         } catch (error) {
             console.error('Failed to load blog posts:', error);
-            statusElement.textContent = 'We were unable to load the blog posts from GitHub at this time. Please try again later.';
-            statusElement.classList.add('error');
+            setStatus('We were unable to load the blog posts from GitHub at this time. Please try again later.', { isError: true });
+
         }
     }
 
