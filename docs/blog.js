@@ -1,7 +1,8 @@
 (function () {
-    const repoOwner = 'mfat';
-    const repoName = 'sshpilot';
-    const blogLabel = 'blog';
+    const pageConfig = (document.body && document.body.dataset) || {};
+    const repoOwner = pageConfig.blogRepoOwner || 'mfat';
+    const repoName = pageConfig.blogRepoName || 'sshpilot';
+    const blogLabel = pageConfig.blogLabel || 'blog';
     const blogLabelLower = blogLabel.toLowerCase();
 
     const issuesUrl = new URL(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`);
