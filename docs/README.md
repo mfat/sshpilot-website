@@ -43,3 +43,15 @@ v2/
 - [ ] Optimize performance
 - [ ] Add dark mode improvements
 - [ ] Enhance accessibility features
+
+## Blog Configuration
+
+Production builds load blog posts from GitHub issues. By default, only issues opened by the configured repository owner are displayed. To allow additional trusted authors, set the `data-blog-author-allowlist` attribute on `docs/blog.html`'s `<body>` element with a comma- or space-separated list of GitHub logins. For example:
+
+```html
+<body
+    data-blog-repo-owner="mfat"
+    data-blog-author-allowlist="mfat,octocat">
+```
+
+Only posts created by these accounts will appear on the published blog.

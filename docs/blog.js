@@ -17,6 +17,31 @@
     const repoApiUrl = `https://api.github.com/repos/${starsRepoOwner}/${starsRepoName}`;
     const shouldAttemptFallback = repoOwner !== fallbackRepoOwner || repoName !== fallbackRepoName;
 
+    function normalizeLogins(value) {
+        if (typeof value !== 'string') {
+            return [];
+        }
+
+        return value
+            .split(/[\s,]+/)
+            .map(login => login.trim().toLowerCase())
+            .filter(Boolean);
+    }
+
+    const configuredAllowlist = normalizeLogins(pageConfig.blogAuthorAllowlist);
+    const defaultAllowlistValues = [repoOwner];
+
+    if (shouldAttemptFallback && typeof fallbackRepoOwner === 'string' && fallbackRepoOwner && fallbackRepoOwner !== repoOwner) {
+        defaultAllowlistValues.push(fallbackRepoOwner);
+    }
+
+    const defaultAllowlist = defaultAllowlistValues
+        .map(value => normalizeLogins(value))
+        .reduce((all, entries) => all.concat(entries), []);
+
+    const authorAllowlist = configuredAllowlist.length ? configuredAllowlist : defaultAllowlist;
+    const authorAllowlistSet = new Set(authorAllowlist);
+
     function buildIssuesEndpoint(owner, name) {
         const url = new URL(`https://api.github.com/repos/${owner}/${name}/issues`);
         url.searchParams.set('state', 'all');
@@ -149,7 +174,15 @@
             .filter(issue => Array.isArray(issue.labels) && issue.labels.some(label => {
                 const labelName = typeof label === 'string' ? label : label.name;
                 return typeof labelName === 'string' && labelName.toLowerCase() === blogLabelLower;
-            }));
+            }))
+            .filter(issue => {
+                const login = issue && issue.user && issue.user.login;
+                if (typeof login !== 'string') {
+                    return false;
+                }
+
+                return authorAllowlistSet.has(login.toLowerCase());
+            });
     }
 
     async function fetchRepoPosts(owner, name) {
