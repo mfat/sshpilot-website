@@ -26,6 +26,7 @@
         return url.toString();
     }
 
+
     function setupNavigation() {
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -56,6 +57,7 @@
 
         try {
             const response = await fetch(repoApiUrl);
+
             if (!response.ok) {
                 throw new Error(`GitHub API responded with ${response.status}`);
             }
@@ -119,6 +121,7 @@
             } else {
                 body.innerHTML = markdown.replace(/\n/g, '<br>');
             }
+
         } else {
             body.innerHTML = markdown.replace(/\n/g, '<br>');
         }
@@ -168,6 +171,7 @@
         const issues = await response.json();
         return filterIssues(issues);
     }
+
 
     async function loadPosts() {
         const postsContainer = document.getElementById('blog-posts');
@@ -245,6 +249,7 @@
             setStatus('We were unable to load the blog posts from GitHub at this time. Please try again later.', { isError: true });
         } else {
             setStatus(emptyMessage);
+
         }
     }
 
