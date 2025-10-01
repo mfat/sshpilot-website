@@ -1,6 +1,19 @@
 (function () {
-    const repo = "mfat/sshpilot";
-    const issuesEndpoint = `https://api.github.com/repos/${repo}/issues?labels=blog&state=all&per_page=20&sort=created&direction=desc`;
+    const repoOwner = 'mfat';
+    const repoName = 'sshpilot';
+    const blogLabel = 'blog';
+    const blogLabelLower = blogLabel.toLowerCase();
+
+    const issuesUrl = new URL(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`);
+    issuesUrl.searchParams.set('state', 'all');
+    issuesUrl.searchParams.set('per_page', '20');
+    issuesUrl.searchParams.set('sort', 'created');
+    issuesUrl.searchParams.set('direction', 'desc');
+    const issuesEndpoint = issuesUrl.toString();
+
+    const repoApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
+
+  
 
     function setupNavigation() {
         const hamburger = document.getElementById('hamburger');
@@ -31,7 +44,8 @@
         }
 
         try {
-            const response = await fetch(`https://api.github.com/repos/${repo}`);
+            const response = await fetch(repoApiUrl);
+
             if (!response.ok) {
                 throw new Error(`GitHub API responded with ${response.status}`);
             }
@@ -87,8 +101,15 @@
         const body = document.createElement('div');
         body.className = 'blog-content';
         const markdown = issue.body || '';
-        if (window.marked && typeof window.marked.parse === 'function') {
-            body.innerHTML = window.marked.parse(markdown);
+        if (window.marked) {
+            if (typeof window.marked.parse === 'function') {
+                body.innerHTML = window.marked.parse(markdown);
+            } else if (typeof window.marked === 'function') {
+                body.innerHTML = window.marked(markdown);
+            } else {
+                body.innerHTML = markdown.replace(/\n/g, '<br>');
+            }
+
         } else {
             body.innerHTML = markdown.replace(/\n/g, '<br>');
         }
@@ -132,7 +153,13 @@
             }
 
             const issues = await response.json();
-            const posts = (Array.isArray(issues) ? issues : []).filter(issue => !issue.pull_request);
+            const posts = (Array.isArray(issues) ? issues : [])
+                .filter(issue => !issue.pull_request)
+                .filter(issue => Array.isArray(issue.labels) && issue.labels.some(label => {
+                    const labelName = typeof label === 'string' ? label : label.name;
+                    return typeof labelName === 'string' && labelName.toLowerCase() === blogLabelLower;
+                }));
+
 
             postsContainer.innerHTML = '';
 
