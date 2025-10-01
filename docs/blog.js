@@ -13,6 +13,8 @@
 
     const repoApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
 
+  
+
     function setupNavigation() {
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -43,6 +45,7 @@
 
         try {
             const response = await fetch(repoApiUrl);
+
             if (!response.ok) {
                 throw new Error(`GitHub API responded with ${response.status}`);
             }
@@ -106,6 +109,7 @@
             } else {
                 body.innerHTML = markdown.replace(/\n/g, '<br>');
             }
+
         } else {
             body.innerHTML = markdown.replace(/\n/g, '<br>');
         }
@@ -155,6 +159,7 @@
                     const labelName = typeof label === 'string' ? label : label.name;
                     return typeof labelName === 'string' && labelName.toLowerCase() === blogLabelLower;
                 }));
+
 
             postsContainer.innerHTML = '';
 
