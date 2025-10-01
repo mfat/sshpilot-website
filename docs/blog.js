@@ -3,6 +3,7 @@
     const repoOwner = pageConfig.blogRepoOwner || 'mfat';
     const repoName = pageConfig.blogRepoName || 'sshpilot';
     const blogLabel = pageConfig.blogLabel || 'blog';
+
     const blogLabelLower = blogLabel.toLowerCase();
 
     const issuesUrl = new URL(`https://api.github.com/repos/${repoOwner}/${repoName}/issues`);
@@ -13,6 +14,7 @@
     const issuesEndpoint = issuesUrl.toString();
 
     const repoApiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
+
 
     function setupNavigation() {
         const hamburger = document.getElementById('hamburger');
@@ -44,6 +46,7 @@
 
         try {
             const response = await fetch(repoApiUrl);
+
             if (!response.ok) {
                 throw new Error(`GitHub API responded with ${response.status}`);
             }
@@ -107,6 +110,7 @@
             } else {
                 body.innerHTML = markdown.replace(/\n/g, '<br>');
             }
+
         } else {
             body.innerHTML = markdown.replace(/\n/g, '<br>');
         }
@@ -158,6 +162,7 @@
 
         try {
             setStatus(loadingMessage);
+
             const response = await fetch(issuesEndpoint, {
                 headers: {
                     Accept: 'application/vnd.github+json'
@@ -185,12 +190,14 @@
 
             setStatus('');
 
+
             posts.forEach(issue => {
                 postsContainer.appendChild(renderPost(issue));
             });
         } catch (error) {
             console.error('Failed to load blog posts:', error);
             setStatus('We were unable to load the blog posts from GitHub at this time. Please try again later.', { isError: true });
+
         }
     }
 
