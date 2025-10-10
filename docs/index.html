@@ -156,6 +156,35 @@
                         </a>
                 </div>
             </div>
+
+            <div class="repo-instructions">
+                <h3>📦 Package Repositories</h3>
+                
+                <div class="repo-section">
+                    <h4>Debian/Ubuntu APT Repository</h4>
+                    <p>Get automatic updates via the official APT repository:</p>
+                    <div class="code-block">
+                        <code># Add GPG key<br>
+curl -fsSL https://mfat.github.io/sshpilot-ppa/pubkey.gpg | sudo gpg --dearmor -o /usr/share/keyrings/sshpilot-ppa.gpg<br><br>
+# Add repository<br>
+echo "deb [signed-by=/usr/share/keyrings/sshpilot-ppa.gpg arch=amd64] https://mfat.github.io/sshpilot-ppa any main" | sudo tee /etc/apt/sources.list.d/sshpilot-ppa.list<br><br>
+# Install<br>
+sudo apt update && sudo apt install sshpilot</code>
+                    </div>
+                    <p class="repo-link">More info: <a href="https://mfat.github.io/sshpilot-ppa/" target="_blank">mfat.github.io/sshpilot-ppa</a></p>
+                </div>
+
+                <div class="repo-section">
+                    <h4>Fedora/RHEL/openSUSE COPR Repository</h4>
+                    <p>Get automatic updates via the COPR repository:</p>
+                    <div class="code-block">
+                        <code># Enable repository and install<br>
+dnf copr enable mahdif62/sshpilot<br>
+dnf install sshpilot</code>
+                    </div>
+                    <p class="repo-link">More info: <a href="https://copr.fedorainfracloud.org/coprs/mahdif62/sshpilot/" target="_blank">COPR Repository</a></p>
+                </div>
+            </div>
         </section>
 
             <section id="features">

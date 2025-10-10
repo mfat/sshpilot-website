@@ -615,6 +615,72 @@ footer p {
     word-break: break-all;
 }
 
+/* Repository instructions */
+.repo-instructions {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #e9ecef;
+}
+
+.repo-instructions h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.repo-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+}
+
+.repo-section h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.repo-section p {
+    color: #495057;
+    margin-bottom: 15px;
+}
+
+.code-block {
+    background: #2d2d2d;
+    color: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin: 15px 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Courier New', monospace;
+}
+
+.code-block code {
+    font-size: 13px;
+    line-height: 1.6;
+    display: block;
+}
+
+.repo-link {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.repo-link a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.repo-link a:hover {
+    text-decoration: underline;
+}
+
 /* Download buttons */
 .download-btn {
     display: inline-block;
