@@ -17,18 +17,56 @@ body {
     line-height: 1.6;
     color: #333;
     background: #fff;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 
 
+/* Page wrapper for content width */
+.page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
 /* Header */
+header {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .header-link {
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .header-link:hover {
@@ -36,64 +74,43 @@ body {
     color: inherit;
 }
 
-.header-link:hover p {
-    text-decoration: none;
-}
-
-.header-content {
-    display: flex;
-    align-items: flex-end;
-    gap: 0;
-    margin-bottom: 5px;
-}
-
 .header-icon {
-    width: 64px;
-    height: 64px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
 }
 
-.header-content h1 {
+.header-link h1 {
     margin: 0;
-    line-height: 1;
-    font-size: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-}
-
-header p {
-    margin: 0;
-    margin-left: 64px;
-    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 /* GitHub stats */
 .github-stats {
-    margin: 20px 0 30px 0;
-    text-align: center;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .github-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #24292e;
+    background: #2a2a2a;
     color: #fff;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     transition: all 0.2s ease;
-    border: 1px solid #24292e;
+    border: 1px solid #3a3a3a;
 }
 
 .github-link:hover {
-    background: #0366d6;
-    border-color: #0366d6;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background: #667eea;
+    border-color: #667eea;
+    transform: translateY(-2px);
 }
 
 .github-icon {
@@ -105,8 +122,8 @@ header p {
 }
 
 .github-stars {
-    background: rgba(255,255,255,0.2);
-    padding: 2px 6px;
+    background: rgba(255,255,255,0.15);
+    padding: 2px 8px;
     border-radius: 12px;
     font-size: 12px;
     font-weight: 600;
@@ -140,15 +157,14 @@ h3 {
 
 /* Navigation */
 nav {
-    margin: 20px 0;
-    padding: 15px 0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .nav-desktop {
-    display: block;
+    display: flex;
+    gap: 30px;
+    align-items: center;
 }
 
 .nav-mobile {
@@ -156,13 +172,15 @@ nav {
 }
 
 nav a {
-    color: #0066cc;
+    color: #333;
     text-decoration: none;
-    margin: 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    color: #667eea;
 }
 
 /* Hamburger Menu */
@@ -242,12 +260,14 @@ li {
 
 /* Features section styling */
 #features {
-    margin: 30px 0;
+    margin: 0;
+    padding-top: 20px !important;
 }
 
 #features h2 {
     color: #333;
     border-bottom: 2px solid #333;
+    margin-top: 0;
 }
 
 #features ul {
@@ -362,6 +382,83 @@ li {
 
 .review-link {
     font-weight: 600;
+}
+
+/* Hero Banner */
+#hero-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    padding: 80px 0;
+    margin: 0;
+}
+
+.hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-text {
+    color: #fff;
+}
+
+.hero-text h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #fff;
+    border: none;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    opacity: 0.95;
+}
+
+.hero-text p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.hero-text .download-btn {
+    margin-top: 30px;
+    display: inline-block;
+    background: #ff6b35;
+    color: #fff;
+    font-size: 18px;
+    padding: 15px 35px;
+    font-weight: 700;
+}
+
+.hero-text .download-btn:hover {
+    background: #ff8c5a;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 700px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.02);
 }
 
 /* About section styling */
@@ -519,68 +616,106 @@ figcaption {
 
 /* Footer */
 footer {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ccc;
-    text-align: center;
-    color: #666;
+    margin-top: 0;
+    padding: 60px 0 40px;
+    background: #1a1a1a;
+    color: #ccc;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    align-items: start;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-section h4 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
 }
 
 .footer-links {
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .footer-links a {
-    color: #0066cc;
+    color: #ccc;
     text-decoration: none;
-    margin: 0 5px;
+    font-size: 14px;
+    transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-    text-decoration: underline;
+    color: #667eea;
 }
 
 footer p {
-    margin-bottom: 5px;
+    margin: 0;
+    color: #999;
+    font-size: 14px;
+}
+
+footer p a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    color: #667eea;
+}
+
+.footer-bottom {
+    max-width: 1400px;
+    margin: 30px auto 0;
+    padding: 20px 40px 0;
+    border-top: 1px solid #333;
+    text-align: center;
+    color: #666;
+    font-size: 13px;
 }
 
 /* Support section */
 .support-section {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
-}
-
-.support-section h4 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 15px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .crypto-addresses {
     display: flex;
-    flex-direction: column;
     gap: 12px;
-    max-width: 400px;
-    margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 .crypto-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: #f8f9fa;
+    gap: 10px;
+    background: #2a2a2a;
     padding: 12px 16px;
     border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border: 1px solid #3a3a3a;
     transition: all 0.2s ease;
+    flex: 1;
+    min-width: 200px;
 }
 
 .crypto-item:hover {
-    background: #e9ecef;
-    border-color: #dee2e6;
+    background: #333;
+    border-color: #667eea;
+    transform: translateY(-2px);
 }
 
 .crypto-icon {
@@ -591,7 +726,7 @@ footer p {
     text-align: center;
 }
 
-.crypto-item:last-child .crypto-icon {
+.crypto-item:nth-child(2) .crypto-icon {
     color: #c2a633;
 }
 
@@ -600,17 +735,18 @@ footer p {
     flex-direction: column;
     gap: 2px;
     flex: 1;
+    min-width: 0;
 }
 
 .crypto-name {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    color: #2c3e50;
+    color: #fff;
 }
 
 .crypto-address {
-    font-size: 12px;
-    color: #6c757d;
+    font-size: 11px;
+    color: #999;
     font-family: 'Courier New', monospace;
     word-break: break-all;
 }
@@ -813,10 +949,65 @@ footer p {
     background: linear-gradient(135deg, #fff 0%, #f5f9ff 100%);
 }
 
+/* Content sections */
+.content-section {
+    padding: 40px 0;
+}
+
+#screenshots {
+    padding-top: 20px;
+}
+
 /* Responsive */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .hero-text h2 {
+        font-size: 40px;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    
+    .hero-image {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container,
+    .content-wrapper,
+    .hero-content {
+        padding: 0 20px;
+    }
+    
+    #hero-banner {
+        padding: 60px 0;
+    }
+    
+    .hero-text h2 {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .hero-text p {
+        font-size: 16px;
+    }
+    
+    .content-section {
+        padding: 40px 0;
+    }
+}
+
 @media (max-width: 600px) {
     body {
-        padding: 15px;
         font-size: 14px;
     }
     
@@ -835,27 +1026,35 @@ footer p {
     .nav-mobile {
         display: block;
     }
-
-    .header-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 12px;
+    
+    .header-container {
+        padding: 0 15px;
     }
-
-    .header-icon {
-        width: 48px;
-        height: 48px;
+    
+    .content-wrapper,
+    .hero-content {
+        padding: 0 15px;
     }
-
-    .header-content h1 {
-        font-size: 2.2em;
-        height: auto;
+    
+    #hero-banner {
+        padding: 40px 0;
     }
-
-    header p {
-        margin-left: 0;
-        text-align: center;
+    
+    .hero-text h2 {
+        font-size: 28px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .hero-text p {
+        font-size: 14px;
+    }
+    
+    .hero-text .download-btn {
+        font-size: 16px;
+        padding: 12px 28px;
     }
 
     .download-buttons {
@@ -874,6 +1073,28 @@ footer p {
 
     .blog-list {
         grid-template-columns: 1fr;
+    }
+    
+    .content-section {
+        padding: 30px 0;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px;
+    }
+    
+    .footer-bottom {
+        padding: 20px 15px 0;
+    }
+    
+    .crypto-addresses {
+        flex-direction: column;
+    }
+    
+    .crypto-item {
+        min-width: 100%;
     }
 }
 

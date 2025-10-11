@@ -22,91 +22,100 @@
 
     <div class="page">
         <header>
-            <a href="index.html" class="header-link">
-                <div class="header-content">
-                    <img src="io.github.mfat.sshpilot.svg" alt="SSH Pilot Logo" class="header-icon">
-                    <h1>SSH Pilot</h1>
-                </div>
-                <p>User-friendly, modern SSH Connection Manager</p>
-            </a>
+            <div class="header-container">
+                <a href="index.html" class="header-link">
+                    <img src="io.github.mfat.sshpilot.svg" alt="SSH Pilot" class="header-icon">
+                </a>
+                <nav>
+                    <div class="nav-desktop">
+                        <a href="index.html#download">Download</a>
+                        <a href="index.html#features">Features</a>
+                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
+                        <a href="blog.html">Blog</a>
+                        <a href="reviews.html">Reviews</a>
+                        <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+                    </div>
+                    <div class="nav-mobile">
+                        <button class="hamburger" id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <div class="nav-menu" id="nav-menu">
+                            <a href="index.html#download">Download</a>
+                            <a href="index.html#features">Features</a>
+                            <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
+                            <a href="blog.html">Blog</a>
+                            <a href="reviews.html">Reviews</a>
+                            <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </header>
 
-        <nav>
-            <div class="nav-desktop">
-                <a href="index.html#about">About</a> |
-                <a href="index.html#download">Download</a> |
-                <a href="index.html#features">Features</a> |
-                <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a> |
-                <a href="blog.html">Blog</a> |
-                <a href="reviews.html">Reviews</a> |
-                <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
-            </div>
-            <div class="nav-mobile">
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="nav-menu" id="nav-menu">
-                    <a href="index.html#about">About</a>
-                    <a href="index.html#download">Download</a>
-                    <a href="index.html#features">Features</a>
-                    <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="reviews.html">Reviews</a>
-                    <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
-                </div>
-            </div>
-        </nav>
-
         <main>
-            <section id="blog">
-                <h2>Blog</h2>
-                <p class="blog-intro">Updates, release notes, and development insights from the SSH Pilot project.</p>
-                <p id="blog-status" class="blog-status" data-empty-text="No blog posts available yet. Check back soon!">No blog posts available yet. Check back soon!</p>
-                <noscript>
-                    <p class="blog-status">JavaScript is required to load blog posts from GitHub. Please enable it to view the latest updates.</p>
-                </noscript>
+            <section id="blog" class="content-section">
+                <div class="content-wrapper">
+                    <h2>Blog</h2>
+                    <p class="blog-intro">Updates, release notes, and development insights from the SSH Pilot project.</p>
+                    <p id="blog-status" class="blog-status" data-empty-text="No blog posts available yet. Check back soon!">No blog posts available yet. Check back soon!</p>
+                    <noscript>
+                        <p class="blog-status">JavaScript is required to load blog posts from GitHub. Please enable it to view the latest updates.</p>
+                    </noscript>
 
-                <div id="blog-posts" class="blog-list" aria-live="polite"></div>
+                    <div id="blog-posts" class="blog-list" aria-live="polite"></div>
+                </div>
             </section>
         </main>
 
         <footer>
-            <div class="footer-links">
-                <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Online Help</a> |
-                <a href="https://github.com/mfat/sshpilot/issues" target="_blank">Issues</a> |
-                <a href="https://github.com/mfat/sshpilot/discussions" target="_blank">Community</a>
-            </div>
-            <div class="github-stats">
-                <a href="https://github.com/mfat/sshpilot" target="_blank" class="github-link">
-                    <svg class="github-icon" viewBox="0 0 24 24" width="16" height="16">
-                        <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    <span class="github-text">Star on GitHub</span>
-                    <span id="github-stars" class="github-stars">⭐</span>
-                </a>
-            </div>
-            <p><a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">Free software (GPL v3 license)</a></p>
-
-            <div class="support-section">
-                <h4>Support the Project</h4>
-                <div class="crypto-addresses">
-                    <div class="crypto-item">
-                        <span class="crypto-icon">₿</span>
-                        <div class="crypto-info">
-                            <span class="crypto-name">Bitcoin</span>
-                            <span class="crypto-address">bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</span>
-                        </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <div class="footer-links">
+                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
+                        <a href="https://github.com/mfat/sshpilot/issues" target="_blank">Issues</a>
+                        <a href="https://github.com/mfat/sshpilot/discussions" target="_blank">Community</a>
                     </div>
-                    <div class="crypto-item">
-                        <span class="crypto-icon">Ð</span>
-                        <div class="crypto-info">
-                            <span class="crypto-name">Dogecoin</span>
-                            <span class="crypto-address">DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</span>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>GitHub</h4>
+                    <div class="github-stats">
+                        <a href="https://github.com/mfat/sshpilot" target="_blank" class="github-link">
+                            <svg class="github-icon" viewBox="0 0 24 24" width="16" height="16">
+                                <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            <span class="github-text">Star on GitHub</span>
+                            <span id="github-stars" class="github-stars">⭐</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section support-section">
+                    <h4>Support the Project</h4>
+                    <div class="crypto-addresses">
+                        <div class="crypto-item">
+                            <span class="crypto-icon">₿</span>
+                            <div class="crypto-info">
+                                <span class="crypto-name">Bitcoin</span>
+                                <span class="crypto-address">bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</span>
+                            </div>
+                        </div>
+                        <div class="crypto-item">
+                            <span class="crypto-icon">Ð</span>
+                            <div class="crypto-info">
+                                <span class="crypto-name">Dogecoin</span>
+                                <span class="crypto-address">DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p><a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">Free software (GPL v3 license)</a></p>
             </div>
         </footer>
     </div>
