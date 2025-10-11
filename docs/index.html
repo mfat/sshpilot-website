@@ -66,7 +66,7 @@
             height: auto;
             object-fit: contain;
             display: block;
-            transition: transform 0.3s ease;
+            transition: transform 0.15s ease;
             cursor: pointer;
         }
 
@@ -689,6 +689,21 @@ dnf install sshpilot</code>
                   <img src="screenshots/${screenshot.filename}" alt="${screenshot.alt}" loading="lazy">
                   <div class="swiper-caption">${screenshot.alt}</div>
               `;
+              
+              const img = slide.querySelector('img');
+              
+              // Add mousemove handler for zoom following cursor
+              slide.addEventListener('mousemove', function(e) {
+                  const rect = img.getBoundingClientRect();
+                  const x = ((e.clientX - rect.left) / rect.width) * 100;
+                  const y = ((e.clientY - rect.top) / rect.height) * 100;
+                  img.style.transformOrigin = `${x}% ${y}%`;
+              });
+              
+              // Reset transform origin on mouse leave
+              slide.addEventListener('mouseleave', function() {
+                  img.style.transformOrigin = 'center center';
+              });
               
               // Add click handler to open lightbox
               slide.addEventListener('click', function() {
