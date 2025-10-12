@@ -961,8 +961,17 @@ footer p a:hover {
 /* Responsive */
 @media (max-width: 1024px) {
     .hero-content {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 40px;
+    }
+    
+    .hero-text {
+        order: 2;
+    }
+    
+    .hero-image {
+        order: 1;
     }
     
     .hero-text h2 {
@@ -971,10 +980,6 @@ footer p a:hover {
     
     .hero-subtitle {
         font-size: 20px;
-    }
-    
-    .hero-image {
-        order: -1;
     }
 }
 
@@ -986,7 +991,22 @@ footer p a:hover {
     }
     
     #hero-banner {
-        padding: 60px 0;
+        padding: 40px 0;
+    }
+    
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .hero-text {
+        order: 1;
+        text-align: center;
+    }
+    
+    .hero-image {
+        order: 2;
     }
     
     .hero-text h2 {
@@ -999,6 +1019,10 @@ footer p a:hover {
     
     .hero-text p {
         font-size: 16px;
+    }
+    
+    .hero-image img {
+        max-width: 90%;
     }
     
     .content-section {
@@ -1037,24 +1061,48 @@ footer p a:hover {
     }
     
     #hero-banner {
-        padding: 40px 0;
+        padding: 30px 0;
+    }
+    
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .hero-text {
+        order: 1;
+        text-align: center;
+    }
+    
+    .hero-image {
+        order: 2;
     }
     
     .hero-text h2 {
-        font-size: 28px;
+        font-size: 24px;
+        line-height: 1.2;
     }
     
     .hero-subtitle {
-        font-size: 16px;
+        font-size: 15px;
+        margin-bottom: 15px;
     }
     
     .hero-text p {
         font-size: 14px;
+        line-height: 1.5;
     }
     
     .hero-text .download-btn {
-        font-size: 16px;
+        font-size: 15px;
         padding: 12px 28px;
+        margin-top: 20px;
+    }
+    
+    .hero-image img {
+        max-width: 100%;
+        border-radius: 8px;
     }
 
     .download-buttons {
