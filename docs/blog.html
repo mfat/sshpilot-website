@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSH Pilot Blog</title>
-    <meta name="description" content="Read the latest updates and announcements for SSH Pilot, the user-friendly SSH connection manager.">
+    <title>SSH Pilot Blog - Updates & Insights</title>
+    <meta name="description" content="Read the latest updates, release notes, and development insights for SSH Pilot, the modern SSH connection manager.">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="io.github.mfat.sshpilot.svg">
+    
+    <!-- Inline Early Theme Initialization -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SSH Pilot Blog">
+    <meta property="og:description" content="Latest news, release announcements, and updates from the SSH Pilot project.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mfat.github.io/sshpilot/blog.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/mfat/sshpilot/main/docs/screenshots/main-window.png">
+    
     <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" defer></script>
     <script src="blog.js" defer></script>
 </head>
@@ -23,31 +41,41 @@
     <div class="page">
         <header>
             <div class="header-container">
-                <a href="index.html" class="header-link">
-                    <img src="io.github.mfat.sshpilot.svg" alt="SSH Pilot" class="header-icon">
+                <a href="index.html" class="header-link" title="SSH Pilot">
+                    <img src="io.github.mfat.sshpilot.svg" alt="SSH Pilot Logo" class="header-icon">
                 </a>
                 <nav>
                     <div class="nav-desktop">
-                        <a href="index.html#download">Download</a>
                         <a href="index.html#features">Features</a>
-                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
-                        <a href="blog.html">Blog</a>
+                        <a href="index.html#screenshots">Screenshots</a>
+                        <a href="index.html#download">Download</a>
+                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
+                        <a href="blog.html" style="font-weight: 700;">Blog</a>
                         <a href="reviews.html">Reviews</a>
-                        <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+                        <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">GitHub</a>
+                        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Light/Dark Theme" title="Toggle theme">
+                            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </button>
                     </div>
                     <div class="nav-mobile">
-                        <button class="hamburger" id="hamburger">
+                        <button class="theme-toggle-btn" id="theme-toggle-mobile" aria-label="Toggle Light/Dark Theme" title="Toggle theme">
+                            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </button>
+                        <button class="hamburger" id="hamburger" aria-label="Toggle Navigation Menu" aria-expanded="false">
                             <span></span>
                             <span></span>
                             <span></span>
                         </button>
                         <div class="nav-menu" id="nav-menu">
-                            <a href="index.html#download">Download</a>
                             <a href="index.html#features">Features</a>
-                            <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
+                            <a href="index.html#screenshots">Screenshots</a>
+                            <a href="index.html#download">Download</a>
+                            <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
                             <a href="blog.html">Blog</a>
                             <a href="reviews.html">Reviews</a>
-                            <a href="https://github.com/mfat/sshpilot" target="_blank">GitHub</a>
+                            <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">GitHub</a>
                         </div>
                     </div>
                 </nav>
@@ -57,11 +85,16 @@
         <main>
             <section id="blog" class="content-section">
                 <div class="content-wrapper">
-                    <h2>Blog</h2>
-                    <p class="blog-intro">Updates, release notes, and development insights from the SSH Pilot project.</p>
-                    <p id="blog-status" class="blog-status" data-empty-text="No blog posts available yet. Check back soon!">No blog posts available yet. Check back soon!</p>
+                    <div class="section-header" style="text-align: left; max-width: 100%; margin-bottom: 36px;">
+                        <span class="section-tag">Updates</span>
+                        <h2>Project Blog</h2>
+                        <p class="blog-intro">Release notes, development insights, and tutorials.</p>
+                    </div>
+
+                    <div id="blog-status" class="blog-status" data-empty-text="No blog posts available yet. Check back soon!">No blog posts available yet. Check back soon!</div>
+                    
                     <noscript>
-                        <p class="blog-status">JavaScript is required to load blog posts from GitHub. Please enable it to view the latest updates.</p>
+                        <div class="blog-status">JavaScript is required to dynamically load blog posts from GitHub.</div>
                     </noscript>
 
                     <div id="blog-posts" class="blog-list" aria-live="polite"></div>
@@ -74,50 +107,82 @@
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <div class="footer-links">
-                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank">Documentation</a>
-                        <a href="https://github.com/mfat/sshpilot/issues" target="_blank">Issues</a>
-                        <a href="https://github.com/mfat/sshpilot/discussions" target="_blank">Community</a>
+                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Documentation Wiki</a>
+                        <a href="https://github.com/mfat/sshpilot/issues" target="_blank" rel="noopener">Issue Tracker</a>
+                        <a href="https://github.com/mfat/sshpilot/discussions" target="_blank" rel="noopener">Community Discussions</a>
+                        <a href="blog.html">Project Blog</a>
+                        <a href="reviews.html">Press & Reviews</a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
-                    <h4>GitHub</h4>
+                    <h4>Open Source</h4>
                     <div class="github-stats">
-                        <a href="https://github.com/mfat/sshpilot" target="_blank" class="github-link">
-                            <svg class="github-icon" viewBox="0 0 24 24" width="16" height="16">
-                                <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                            <span class="github-text">Star on GitHub</span>
+                        <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener" class="github-link">
+                            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            <span>Star on GitHub</span>
                             <span id="github-stars" class="github-stars">⭐</span>
                         </a>
                     </div>
                 </div>
-                
-                <div class="footer-section support-section">
-                    <h4>Support the Project</h4>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
                     <div class="crypto-addresses">
                         <div class="crypto-item">
                             <span class="crypto-icon">₿</span>
                             <div class="crypto-info">
                                 <span class="crypto-name">Bitcoin</span>
-                                <span class="crypto-address">bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</span>
+                                <span class="crypto-address" title="bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t">bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t</span>
                             </div>
                         </div>
                         <div class="crypto-item">
                             <span class="crypto-icon">Ð</span>
                             <div class="crypto-info">
                                 <span class="crypto-name">Dogecoin</span>
-                                <span class="crypto-address">DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</span>
+                                <span class="crypto-address" title="DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx">DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
-                <p><a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">Free software (GPL v3 license)</a></p>
+                <p>Released under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">GNU General Public License v3.0</a>.</p>
             </div>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
+            function syncIcons() {
+                const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                toggleBtns.forEach(btn => {
+                    const sun = btn.querySelector('.sun-icon');
+                    const moon = btn.querySelector('.moon-icon');
+                    if (sun && moon) {
+                        if (currentTheme === 'dark') {
+                            sun.style.display = 'block';
+                            moon.style.display = 'none';
+                        } else {
+                            sun.style.display = 'none';
+                            moon.style.display = 'block';
+                        }
+                    }
+                });
+            }
+            syncIcons();
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', next);
+                    localStorage.setItem('theme', next);
+                    syncIcons();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
