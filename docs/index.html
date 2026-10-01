@@ -206,7 +206,10 @@ sudo dnf install sshpilot</pre>
                     <span>SSH Pilot &mdash; Released under GNU GPLv3 License.</span>
                 </div>
                 <div class="footer-links">
-                    <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">
+                        <span>GitHub</span>
+                        <span id="github-stars" class="github-stars-badge">★</span>
+                    </a>
                     <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
                     <a href="https://github.com/mfat/sshpilot/issues" target="_blank" rel="noopener">Issues</a>
                     <a href="https://t.me/sshpilot" target="_blank" rel="noopener">Telegram</a>
@@ -320,6 +323,23 @@ sudo dnf install sshpilot</pre>
                 }
             } catch (e) {
                 console.error(e);
+            }
+        })();
+
+        // GitHub Stargazers Counter
+        (async () => {
+            try {
+                const res = await fetch('https://api.github.com/repos/mfat/sshpilot');
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.stargazers_count !== undefined) {
+                    const countStr = `★ ${data.stargazers_count.toLocaleString()}`;
+                    document.querySelectorAll('#github-stars, .github-stars-badge').forEach(el => {
+                        el.textContent = countStr;
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to fetch GitHub stars:', err);
             }
         })();
     </script>

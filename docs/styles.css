@@ -301,6 +301,19 @@ header {
     border-color: var(--border-hover);
 }
 
+.star-badge, .github-stars-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 6px;
+    background: var(--bg-badge);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
 .hero-image-wrapper {
     margin-top: 10px;
 }
@@ -527,6 +540,44 @@ header {
 .wallet-action {
     color: var(--text-muted);
     font-size: 0.75rem;
+}
+
+/* Reviews Page */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.review-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.review-author {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.review-summary {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.review-link {
+    color: var(--text-primary);
+    text-decoration: underline;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
 /* Footer */
