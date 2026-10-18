@@ -4,119 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SSH Pilot - SSH and SFTP client for Linux, macOS and Windows</title>
-    <meta name="description" content="SSH Pilot is a free and open-source SSH and SFTP client for Linux, macOS and Windows.">
-    <link rel="stylesheet" href="home.css">
-    <link rel="icon" type="image/svg+xml" href="io.github.mfat.sshpilot.svg">
+    <meta name="description" content="SSH Pilot is a free and open-source SSH and SFTP client for Linux, macOS and Windows. Your good old .ssh/config has a face now.">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
 </head>
 <body>
-    <header class="hero">
-        <nav class="nav wrap">
-            <a href="index.html" class="nav-brand"><img src="io.github.mfat.sshpilot.svg" alt="">SSH Pilot</a>
-            <a href="#features">Features</a>
-            <a href="#install">Install</a>
-            <a href="#screenshots">Screenshots</a>
-            <a href="reviews.html">Reviews</a>
-            <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
-            <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener" class="nowrap">GitHub <span class="github-stars">★</span></a>
-        </nav>
-        <div class="hero-body wrap">
-            <h1>SSH Pilot</h1>
-            <div class="hero-row">
-                <p class="hero-tagline">SSH and SFTP for Linux, macOS and Windows. Free and open source.</p>
-                <div class="hero-actions">
-                    <a class="btn btn-download" href="#install"><span>Download</span><span>↓</span></a>
-                    <a class="btn btn-outline" href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">Source</a>
-                </div>
-            </div>
+<div class="page">
+    <div class="decor decor-1" aria-hidden="true"></div>
+    <div class="decor decor-2" aria-hidden="true"></div>
+
+    <nav class="nav wrap">
+        <a href="index.html" class="nav-brand"><img src="logo.svg" alt="SSH Pilot"></a>
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener" class="btn btn-secondary nav-github" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span class="github-stars">★</span></a>
+    </nav>
+
+    <header class="hero wrap">
+        <h1>SSH Pilot</h1>
+        <p class="hero-lede">
+            <span>Your good old <code>.ssh/config</code> has a face now.</span>
+            <span>Keep your workflow. Add GUI convenience.</span>
+        </p>
+        <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#install">Download ↓</a>
+            <a class="btn btn-secondary btn-lg btn-gh" href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
         </div>
     </header>
 
     <main>
-        <section id="screenshots" class="gallery" aria-label="Screenshots">
-            <div class="wrap">
-                <div class="shot-frame"><img id="shot-img" src="screenshots/mixed.png" alt="Terminal and file manager" loading="eager"></div>
-                <div class="shot-tabs" role="tablist">
-                    <button role="tab" aria-selected="true" data-src="screenshots/mixed.png">Terminal and file manager</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/main.png">Main window</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/dashboard.png">Server dashboard</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/split.png">Split view</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/file-manager.png">File manager</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/start-page.png">Start page</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/connection.commands-new.png">Connection commands</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/ssh-copy-id.png">Key deployment</button>
-                    <button role="tab" aria-selected="false" data-src="screenshots/backup.png">Backup and restore</button>
-                </div>
+        <section id="screenshots" class="wrap" aria-label="Screenshots">
+            <div class="shot-frame"><img id="shot-img" src="screenshots/mixed.png" alt="Terminal and file manager"></div>
+            <div class="shot-bar">
+                <span class="shot-label"><span id="shot-label">Terminal and file manager</span> <span class="shot-count">· <span id="shot-count">1 / 9</span></span></span>
+                <span class="shot-nav">
+                    <button class="btn btn-secondary btn-icon" id="shot-prev" aria-label="Previous screenshot">←</button>
+                    <button class="btn btn-secondary btn-icon" id="shot-next" aria-label="Next screenshot">→</button>
+                </span>
+            </div>
+            <div class="shot-tabs" role="tablist" aria-label="Screenshots">
+                <button role="tab" aria-selected="true" title="Terminal and file manager" aria-label="Terminal and file manager"><img src="screenshots/mixed.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="Main window" aria-label="Main window"><img src="screenshots/main.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="Server dashboard" aria-label="Server dashboard"><img src="screenshots/dashboard.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="Split view" aria-label="Split view"><img src="screenshots/split.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="SFTP File manager" aria-label="SFTP File manager"><img src="screenshots/file-manager.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="Start page" aria-label="Start page"><img src="screenshots/start-page.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="Connection commands" aria-label="Connection commands"><img src="screenshots/connection.commands-new.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="Key deployment" aria-label="Key deployment"><img src="screenshots/ssh-copy-id.png" alt="" loading="lazy"></button>
+                <button role="tab" aria-selected="false" title="Backup and restore" aria-label="Backup and restore"><img src="screenshots/backup.png" alt="" loading="lazy"></button>
             </div>
         </section>
 
-        <section id="features" class="split wrap">
+        <section id="features" class="wrap">
             <h2 class="section-title">What it does</h2>
             <div class="features">
                 <div class="feature">
-                    <div class="feature-head"><h3>Uses your SSH config</h3></div>
+                    <h3>Uses your SSH config</h3>
                     <p>Reads and writes ~/.ssh/config directly. There is no import step and no second copy of your hosts to keep in sync.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-head"><h3>Tabs and split view</h3></div>
+                    <h3>Terminal tabs and split view</h3>
                     <p>An integrated terminal with tabs and splits. If you prefer your own terminal app, SSH Pilot opens sessions there instead.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-head"><h3>Dual-pane SFTP</h3></div>
+                    <h3>Dual-pane SFTP</h3>
                     <p>Move files between local and remote panes. SCP upload and download are built in.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-head"><h3>Key transfer</h3></div>
-                    <p>Copy a public key to a server in one step, the same job ssh-copy-id does on the command line.</p>
+                    <h3>Key management</h3>
+                    <p>Generate and copy a public key to a server, manage authorized keys and known hosts with convenience.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-head"><h3>Docker containers</h3></div>
+                    <h3>Docker containers</h3>
                     <p>Inspect and manage the containers running on any connected host.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-head"><h3>Secrets and backups</h3></div>
-                    <p>Store credentials in libsecret, KeePass, Bitwarden/Vaultwarden or pass. Back up and restore app settings.</p>
+                    <h3>Server metrics</h3>
+                    <p>View detailed information about the server's status, hardware and bandwidth usage.</p>
                 </div>
             </div>
         </section>
 
-        <section id="install" class="install">
-            <div class="wrap">
+        <section id="install" class="wrap">
+            <div class="install-card">
                 <h2 class="section-title">Install</h2>
+                <p class="os-note" id="os-note">Every package below comes from the latest release.</p>
                 <div class="downloads">
-                    <a id="dl-deb" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
-                        <span class="download-sub">.deb package</span>
-                        <span class="download-title">Debian / Ubuntu →</span>
+                    <a class="download" data-os="linux" data-asset="\.deb$" href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" rel="noopener">
+                        <span class="download-top"><span class="download-logos"><img src="os/debian.svg" alt="Debian"><img src="os/ubuntu.svg" alt="Ubuntu"><img src="os/mint.svg" alt="Linux Mint"></span></span>
+                        <span class="download-text"><span class="download-title">Debian / Ubuntu / Mint →</span><span class="download-sub">.deb package</span></span>
                     </a>
-                    <a id="dl-rpm" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
-                        <span class="download-sub">.rpm package</span>
-                        <span class="download-title">Fedora / RHEL →</span>
+                    <a class="download" data-os="linux" data-asset="\.rpm$" href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" rel="noopener">
+                        <span class="download-top"><span class="download-logos"><img src="os/fedora.svg" alt="Fedora"><img src="os/redhat.svg" alt="Red Hat"></span></span>
+                        <span class="download-text"><span class="download-title">Fedora / RHEL →</span><span class="download-sub">.rpm package</span></span>
                     </a>
-                    <a class="download" href="https://aur.archlinux.org/packages/sshpilot" target="_blank" rel="noopener">
-                        <span class="download-sub">AUR</span>
-                        <span class="download-title">Arch Linux →</span>
+                    <a class="download" data-os="linux" href="https://aur.archlinux.org/packages/sshpilot" target="_blank" rel="noopener">
+                        <span class="download-top"><span class="download-logos"><img src="os/arch.svg" alt="Arch Linux"></span></span>
+                        <span class="download-text"><span class="download-title">Arch Linux →</span><span class="download-sub">AUR</span></span>
                     </a>
-                    <a class="download" href="https://flathub.org/en/apps/io.github.mfat.sshpilot" target="_blank" rel="noopener">
-                        <span class="download-sub">Flathub</span>
-                        <span class="download-title">Flatpak →</span>
+                    <a class="download" data-os="linux" data-mine href="https://flathub.org/en/apps/io.github.mfat.sshpilot" target="_blank" rel="noopener">
+                        <span class="download-top"><span class="download-logos"><img src="os/flathub.svg" alt="Flathub"></span></span>
+                        <span class="download-text"><span class="download-title">Flatpak →</span><span class="download-sub">Flathub</span></span>
                     </a>
-                    <a id="dl-mac" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
-                        <span class="download-sub">.dmg installer</span>
-                        <span class="download-title">macOS →</span>
+                    <a class="download" data-os="mac" data-mine data-asset="\.dmg$" href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" rel="noopener">
+                        <span class="download-top"><span class="download-logos"><img src="os/apple.svg" alt="Apple"></span></span>
+                        <span class="download-text"><span class="download-title">macOS →</span><span class="download-sub">.dmg installer</span></span>
                     </a>
-                    <a id="dl-win" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
-                        <span class="download-sub">installer</span>
-                        <span class="download-title">Windows →</span>
+                    <a class="download" data-os="win" data-mine data-asset="\.(exe|msi)$" href="https://github.com/mfat/sshpilot/releases/latest" target="_blank" rel="noopener">
+                        <span class="download-top"><span class="download-logos"><img src="os/windows.svg" alt="Windows"></span></span>
+                        <span class="download-text"><span class="download-title">Windows →</span><span class="download-sub">installer</span></span>
                     </a>
                 </div>
                 <div class="repos">
                     <div class="repo">
-                        <div class="repo-head"><h3>Ubuntu PPA</h3><button class="copy-btn" data-copy="Copy">Copy</button></div>
+                        <div class="repo-head"><h3>Ubuntu PPA</h3><button class="btn" data-copy="Copy">Copy</button></div>
                         <pre>sudo add-apt-repository ppa:mfat/sshpilot
 sudo apt update
 sudo apt install sshpilot</pre>
                     </div>
                     <div class="repo">
-                        <div class="repo-head"><h3>Fedora / RHEL COPR</h3><button class="copy-btn" data-copy="Copy">Copy</button></div>
+                        <div class="repo-head"><h3>Fedora / RHEL COPR</h3><button class="btn" data-copy="Copy">Copy</button></div>
                         <pre>sudo dnf copr enable mahdif62/sshpilot
 sudo dnf install sshpilot</pre>
                     </div>
@@ -124,30 +134,30 @@ sudo dnf install sshpilot</pre>
             </div>
         </section>
 
-        <section class="split wrap">
+        <section class="press wrap">
             <div class="press-head">
                 <h2 class="section-title">In the press</h2>
                 <a href="reviews.html">All reviews →</a>
             </div>
-            <div class="press-list">
-                <a class="press-item" href="https://korben.info/ssh-pilot-gestionnaire-connexions-linux.html" target="_blank" rel="noopener">
-                    <span class="press-who">Korben</span>
+            <div class="press-grid">
+                <a class="press-card press-green" href="https://korben.info/ssh-pilot-gestionnaire-connexions-linux.html" target="_blank" rel="noopener">
+                    <span class="press-kicker">French · korben.info</span>
+                    <span class="press-who">Korben →</span>
                     <span class="press-desc">Korben covers SSH Pilot as a connection manager for Linux, pointing to its straightforward workflow and integrated terminal.</span>
-                    <span>→</span>
                 </a>
-                <a class="press-item" href="https://linuxundich.de/gnu-linux/sshpilot-linux-alternative-putty-securecrt/" target="_blank" rel="noopener">
-                    <span class="press-who">Linux und Ich</span>
+                <a class="press-card press-orange" href="https://linuxundich.de/gnu-linux/sshpilot-linux-alternative-putty-securecrt/" target="_blank" rel="noopener">
+                    <span class="press-kicker">German · linuxundich.de</span>
+                    <span class="press-who">Linux und Ich →</span>
                     <span class="press-desc">Linux und Ich presents SSH Pilot as a Linux alternative to PuTTY and SecureCRT, with a lean interface and practical management tools.</span>
-                    <span>→</span>
                 </a>
             </div>
         </section>
 
-        <section class="support">
-            <div class="wrap">
+        <section class="support wrap">
+            <div class="support-card">
                 <h2>Free and open source. Kept that way by its users.</h2>
                 <div class="support-actions">
-                    <a class="btn btn-outline" href="https://ko-fi.com/newmfat" target="_blank" rel="noopener"><span>Support on Ko-fi</span><span>→</span></a>
+                    <a class="btn btn-light" href="https://ko-fi.com/newmfat" target="_blank" rel="noopener"><span>Support on Ko-fi</span><span>→</span></a>
                     <button class="btn btn-outline" data-copy="Copy address" data-text="bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t"><span>BTC</span><span>Copy address</span></button>
                     <button class="btn btn-outline" data-copy="Copy address" data-text="DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx"><span>DOGE</span><span>Copy address</span></button>
                 </div>
@@ -165,66 +175,83 @@ sudo dnf install sshpilot</pre>
             <a href="reviews.html">Reviews</a>
         </span>
     </footer>
+</div>
 
-    <script>
-        // Screenshot gallery tabs
-        (() => {
-            const img = document.getElementById('shot-img');
-            const tabs = document.querySelectorAll('.shot-tabs button');
-            tabs.forEach(tab => tab.addEventListener('click', () => {
-                tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
-                img.src = tab.dataset.src;
-                img.alt = tab.textContent;
-            }));
-        })();
+<script>
+    // Screenshot gallery: thumbnails, prev/next
+    (() => {
+        const img = document.getElementById('shot-img');
+        const label = document.getElementById('shot-label');
+        const count = document.getElementById('shot-count');
+        const tabs = [...document.querySelectorAll('.shot-tabs button')];
+        let current = 0;
+        const show = i => {
+            current = (i + tabs.length) % tabs.length;
+            tabs.forEach((t, j) => t.setAttribute('aria-selected', String(j === current)));
+            img.src = tabs[current].querySelector('img').getAttribute('src');
+            img.alt = label.textContent = tabs[current].title;
+            count.textContent = `${current + 1} / ${tabs.length}`;
+        };
+        tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+        document.getElementById('shot-prev').addEventListener('click', () => show(current - 1));
+        document.getElementById('shot-next').addEventListener('click', () => show(current + 1));
+    })();
 
-        // Copy buttons: repo snippets copy the sibling <pre>, wallet buttons copy data-text
-        document.querySelectorAll('[data-copy]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const text = btn.dataset.text ?? btn.closest('.repo').querySelector('pre').textContent.trim();
-                const label = btn.children.length ? btn.lastElementChild : btn;
-                navigator.clipboard.writeText(text).then(() => {
-                    label.textContent = 'Copied';
-                    clearTimeout(btn._t);
-                    btn._t = setTimeout(() => { label.textContent = btn.dataset.copy; }, 2000);
-                }).catch(() => {});
-            });
+    // Copy buttons: repo snippets copy the sibling <pre>, wallet buttons copy data-text
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const text = btn.dataset.text ?? btn.closest('.repo').querySelector('pre').textContent.trim();
+            const target = btn.children.length ? btn.lastElementChild : btn;
+            navigator.clipboard.writeText(text).then(() => {
+                target.textContent = 'Copied';
+                clearTimeout(btn._t);
+                btn._t = setTimeout(() => { target.textContent = btn.dataset.copy; }, 2000);
+            }).catch(() => {});
         });
+    });
 
-        // Point package cards straight at the latest release assets
-        (async () => {
-            try {
-                const r = await fetch('https://api.github.com/repos/mfat/sshpilot/releases/latest');
-                if (!r.ok) return;
-                const assets = (await r.json()).assets || [];
-                const link = (id, rx) => {
-                    const a = assets.find(a => rx.test(a.name));
-                    if (a) document.getElementById(id).href = a.browser_download_url;
-                };
-                link('dl-deb', /\.deb$/i);
-                link('dl-rpm', /\.rpm$/i);
-                link('dl-mac', /\.dmg$/i);
-                link('dl-win', /\.(exe|msi)$/i);
-            } catch (e) {
-                console.error(e);
-            }
-        })();
+    // Detect the visitor's OS and tag the matching package
+    (() => {
+        const ua = navigator.userAgent;
+        const os = /Mac/i.test(ua) ? 'mac' : /Win/i.test(ua) ? 'win' : /Linux|X11/i.test(ua) ? 'linux' : null;
+        if (!os) return;
+        const name = { mac: 'macOS', win: 'Windows', linux: 'Linux' }[os];
+        document.getElementById('os-note').textContent = `Looks like you're on ${name}. Every package below comes from the latest release.`;
+        const card = document.querySelector(`.download[data-os="${os}"][data-mine]`);
+        if (card) card.querySelector('.download-top').insertAdjacentHTML('beforeend', '<span class="tag">Your system</span>');
+    })();
 
-        // GitHub stargazers counter
-        (async () => {
-            try {
-                const res = await fetch('https://api.github.com/repos/mfat/sshpilot');
-                if (!res.ok) return;
-                const data = await res.json();
-                if (data.stargazers_count != null) {
-                    document.querySelectorAll('.github-stars').forEach(el => {
-                        el.textContent = `★ ${data.stargazers_count.toLocaleString()}`;
-                    });
-                }
-            } catch (e) {
-                console.error(e);
+    // Point package cards straight at the latest release assets
+    (async () => {
+        try {
+            const r = await fetch('https://api.github.com/repos/mfat/sshpilot/releases/latest');
+            if (!r.ok) return;
+            const assets = (await r.json()).assets || [];
+            document.querySelectorAll('.download[data-asset]').forEach(card => {
+                const rx = new RegExp(card.dataset.asset, 'i');
+                const a = assets.find(a => rx.test(a.name));
+                if (a) card.href = a.browser_download_url;
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    })();
+
+    // GitHub stargazers counter
+    (async () => {
+        try {
+            const res = await fetch('https://api.github.com/repos/mfat/sshpilot');
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data.stargazers_count != null) {
+                document.querySelectorAll('.github-stars').forEach(el => {
+                    el.textContent = `★ ${data.stargazers_count.toLocaleString()}`;
+                });
             }
-        })();
-    </script>
+        } catch (e) {
+            console.error(e);
+        }
+    })();
+</script>
 </body>
 </html>
