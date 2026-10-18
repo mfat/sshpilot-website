@@ -3,343 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSH Pilot - User-friendly SSH and SFTP client for Linux and macOS</title>
-    <meta name="description" content="SSH Pilot is a user-friendly SSH and SFTP client for Linux and macOS.">
-    <link rel="stylesheet" href="styles.css">
+    <title>SSH Pilot - SSH and SFTP client for Linux, macOS and Windows</title>
+    <meta name="description" content="SSH Pilot is a free and open-source SSH and SFTP client for Linux, macOS and Windows.">
+    <link rel="stylesheet" href="home.css">
     <link rel="icon" type="image/svg+xml" href="io.github.mfat.sshpilot.svg">
-    
-    <!-- Early Theme Init -->
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
 </head>
 <body>
-    <div class="page">
-        <header>
-            <div class="header-container">
-                <a href="index.html" class="header-link" title="SSH Pilot">
-                    <img src="io.github.mfat.sshpilot.svg" alt="SSH Pilot Logo" class="header-icon">
-                </a>
-                <nav>
-                    <div class="nav-desktop">
-                        <a href="#features">Features</a>
-                        <a href="#install">Install</a>
-                        <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
-                        <a href="reviews.html">Reviews</a>
-                        <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">GitHub</a>
-                        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme" title="Toggle theme">
-                            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                        </button>
-                    </div>
-                    <div class="nav-mobile">
-                        <button class="theme-toggle-btn" id="theme-toggle-mobile" aria-label="Toggle Theme">
-                            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                        </button>
-                        <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                        <div class="nav-menu" id="nav-menu">
-                            <a href="#features">Features</a>
-                            <a href="#install">Install</a>
-                            <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
-                            <a href="reviews.html">Reviews</a>
-                            <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">GitHub</a>
-                        </div>
-                    </div>
-                </nav>
+    <header class="hero">
+        <nav class="nav wrap">
+            <a href="index.html" class="nav-brand"><img src="io.github.mfat.sshpilot.svg" alt="">SSH Pilot</a>
+            <a href="#features">Features</a>
+            <a href="#install">Install</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
+            <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener" class="nowrap">GitHub <span class="github-stars">★</span></a>
+        </nav>
+        <div class="hero-body wrap">
+            <h1>SSH Pilot</h1>
+            <div class="hero-row">
+                <p class="hero-tagline">SSH and SFTP for Linux, macOS and Windows. Free and open source.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-download" href="#install"><span>Download</span><span>↓</span></a>
+                    <a class="btn btn-outline" href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">Source</a>
+                </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main>
-            <!-- Hero -->
-            <section id="hero">
-                <div class="content-wrapper">
-                    <div class="hero-content">
-                        <h1 class="hero-title">SSH Pilot</h1>
-                        <p class="hero-subtitle">
-                            A user-friendly SSH and SFTP client for Linux and macOS, free and opensource.
-                        </p>
-                        <div class="hero-actions">
-                            <a id="hero-primary-download" href="#install" class="btn btn-primary">
-                                Download
-                            </a>
-                            <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener" class="btn btn-secondary">
-                                GitHub
-                            </a>
-                        </div>
-                        <div class="hero-image-wrapper">
-                            <img src="screenshots/main-window.png" alt="SSH Pilot Application Window" class="hero-img" loading="eager">
-                        </div>
-                    </div>
+    <main>
+        <section id="screenshots" class="gallery" aria-label="Screenshots">
+            <div class="wrap">
+                <div class="shot-frame"><img id="shot-img" src="screenshots/mixed.png" alt="Terminal and file manager" loading="eager"></div>
+                <div class="shot-tabs" role="tablist">
+                    <button role="tab" aria-selected="true" data-src="screenshots/mixed.png">Terminal and file manager</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/main.png">Main window</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/dashboard.png">Server dashboard</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/split.png">Split view</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/file-manager.png">File manager</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/start-page.png">Start page</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/connection.commands-new.png">Connection commands</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/ssh-copy-id.png">Key deployment</button>
+                    <button role="tab" aria-selected="false" data-src="screenshots/backup.png">Backup and restore</button>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Features Grid -->
-            <section id="features" class="section">
-                <div class="content-wrapper">
-                    <h2 class="section-title">Features</h2>
-                    <p class="section-desc">Open-source client designed for Linux and macOS.</p>
-
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <h3>OpenSSH Config</h3>
-                            <p>Works directly with your existing <code>~/.ssh/config</code> file.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>Tabbed Terminal & Split View</h3>
-                            <p>Integrated terminal with tabbed interface and split view support (works with your favorite terminal apps too).</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>SFTP Dual-Pane & SCP</h3>
-                            <p>Built-in SFTP dual-pane file manager with SCP download and upload support.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>Key Transfer (`ssh-copy-id`)</h3>
-                            <p>Transfer SSH public keys to remote servers automatically.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>Docker Container Manager</h3>
-                            <p>Graphical interface for inspecting and managing Docker containers.</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>Secure Backends & Backups</h3>
-                            <p>Supports libsecret, Keepass, Bitwarden/Vaultwarden, pass, and app settings backup/restore.</p>
-                        </div>
-                    </div>
+        <section id="features" class="split wrap">
+            <h2 class="section-title">What it does</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-head"><h3>Uses your SSH config</h3></div>
+                    <p>Reads and writes ~/.ssh/config directly. There is no import step and no second copy of your hosts to keep in sync.</p>
                 </div>
-            </section>
+                <div class="feature">
+                    <div class="feature-head"><h3>Tabs and split view</h3></div>
+                    <p>An integrated terminal with tabs and splits. If you prefer your own terminal app, SSH Pilot opens sessions there instead.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-head"><h3>Dual-pane SFTP</h3></div>
+                    <p>Move files between local and remote panes. SCP upload and download are built in.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-head"><h3>Key transfer</h3></div>
+                    <p>Copy a public key to a server in one step, the same job ssh-copy-id does on the command line.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-head"><h3>Docker containers</h3></div>
+                    <p>Inspect and manage the containers running on any connected host.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-head"><h3>Secrets and backups</h3></div>
+                    <p>Store credentials in libsecret, KeePass, Bitwarden/Vaultwarden or pass. Back up and restore app settings.</p>
+                </div>
+            </div>
+        </section>
 
-            <!-- Installation -->
-            <section id="install" class="section">
-                <div class="content-wrapper">
-                    <h2 class="section-title">Download & Repositories</h2>
-                    <p class="section-desc">Download standalone packages or add the official repositories for automatic updates.</p>
-
-                    <div class="download-grid">
-                        <a id="dl-deb" href="#" class="dl-card">
-                            <img src="logos/debian.svg" alt="Debian" class="dl-logo">
-                            <div>
-                                <div class="dl-title">Debian / Ubuntu</div>
-                                <div class="dl-sub">.deb Package</div>
-                            </div>
-                        </a>
-                        <a id="dl-rpm" href="#" class="dl-card">
-                            <img src="logos/fedora.svg" alt="Fedora" class="dl-logo">
-                            <div>
-                                <div class="dl-title">Fedora / RHEL</div>
-                                <div class="dl-sub">.rpm Package</div>
-                            </div>
-                        </a>
-                        <a href="https://aur.archlinux.org/packages/sshpilot" target="_blank" rel="noopener" class="dl-card">
-                            <img src="logos/arch.svg" alt="Arch Linux" class="dl-logo">
-                            <div>
-                                <div class="dl-title">Arch Linux</div>
-                                <div class="dl-sub">AUR Repository</div>
-                            </div>
-                        </a>
-                        <a href="https://flathub.org/en/apps/io.github.mfat.sshpilot" target="_blank" rel="noopener" class="dl-card">
-                            <img src="logos/flathub.svg" alt="Flatpak" class="dl-logo">
-                            <div>
-                                <div class="dl-title">Flatpak</div>
-                                <div class="dl-sub">Flathub Store</div>
-                            </div>
-                        </a>
-                        <a id="dl-mac" href="#" class="dl-card">
-                            <img src="logos/apple.svg" alt="macOS" class="dl-logo">
-                            <div>
-                                <div class="dl-title">macOS</div>
-                                <div class="dl-sub">.dmg Installer</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="repo-grid">
-                        <div class="repo-card">
-                            <h3>Ubuntu PPA</h3>
-                            <p class="repo-subtitle">Add official Ubuntu PPA:</p>
-                            <div class="code-box">
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <pre class="code-block">sudo add-apt-repository ppa:mfat/sshpilot
+        <section id="install" class="install">
+            <div class="wrap">
+                <h2 class="section-title">Install</h2>
+                <div class="downloads">
+                    <a id="dl-deb" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
+                        <span class="download-sub">.deb package</span>
+                        <span class="download-title">Debian / Ubuntu →</span>
+                    </a>
+                    <a id="dl-rpm" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
+                        <span class="download-sub">.rpm package</span>
+                        <span class="download-title">Fedora / RHEL →</span>
+                    </a>
+                    <a class="download" href="https://aur.archlinux.org/packages/sshpilot" target="_blank" rel="noopener">
+                        <span class="download-sub">AUR</span>
+                        <span class="download-title">Arch Linux →</span>
+                    </a>
+                    <a class="download" href="https://flathub.org/en/apps/io.github.mfat.sshpilot" target="_blank" rel="noopener">
+                        <span class="download-sub">Flathub</span>
+                        <span class="download-title">Flatpak →</span>
+                    </a>
+                    <a id="dl-mac" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
+                        <span class="download-sub">.dmg installer</span>
+                        <span class="download-title">macOS →</span>
+                    </a>
+                    <a id="dl-win" class="download" href="https://github.com/mfat/sshpilot/releases/latest">
+                        <span class="download-sub">installer</span>
+                        <span class="download-title">Windows →</span>
+                    </a>
+                </div>
+                <div class="repos">
+                    <div class="repo">
+                        <div class="repo-head"><h3>Ubuntu PPA</h3><button class="copy-btn" data-copy="Copy">Copy</button></div>
+                        <pre>sudo add-apt-repository ppa:mfat/sshpilot
 sudo apt update
 sudo apt install sshpilot</pre>
-                            </div>
-                        </div>
-
-                        <div class="repo-card">
-                            <h3>Fedora / RHEL COPR</h3>
-                            <p class="repo-subtitle">Enable COPR repository:</p>
-                            <div class="code-box">
-                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                                <pre class="code-block">sudo dnf copr enable mahdif62/sshpilot
+                    </div>
+                    <div class="repo">
+                        <div class="repo-head"><h3>Fedora / RHEL COPR</h3><button class="copy-btn" data-copy="Copy">Copy</button></div>
+                        <pre>sudo dnf copr enable mahdif62/sshpilot
 sudo dnf install sshpilot</pre>
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </section>
-        </main>
+            </div>
+        </section>
 
-        <footer>
-            <div class="footer-support">
-                <span class="support-label">Support SSH Pilot:</span>
-                <a href="https://ko-fi.com/newmfat" target="_blank" rel="noopener" class="support-link">Ko-fi</a>
-                <button class="wallet-btn" onclick="copyWallet('bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t', this)">
-                    <span>BTC</span>
-                    <span class="wallet-action">Copy</span>
-                </button>
-                <button class="wallet-btn" onclick="copyWallet('DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx', this)">
-                    <span>DOGE</span>
-                    <span class="wallet-action">Copy</span>
-                </button>
+        <section class="split wrap">
+            <div class="press-head">
+                <h2 class="section-title">In the press</h2>
+                <a href="reviews.html">All reviews →</a>
             </div>
-            <div class="footer-inner">
-                <div>
-                    <span>SSH Pilot &mdash; Released under GNU GPLv3 License.</span>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">
-                        <span>GitHub</span>
-                        <span id="github-stars" class="github-stars-badge">★</span>
-                    </a>
-                    <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
-                    <a href="https://github.com/mfat/sshpilot/issues" target="_blank" rel="noopener">Issues</a>
-                    <a href="https://t.me/sshpilot" target="_blank" rel="noopener">Telegram</a>
-                    <a href="reviews.html">Reviews</a>
+            <div class="press-list">
+                <a class="press-item" href="https://korben.info/ssh-pilot-gestionnaire-connexions-linux.html" target="_blank" rel="noopener">
+                    <span class="press-who">Korben</span>
+                    <span class="press-desc">Korben covers SSH Pilot as a connection manager for Linux, pointing to its straightforward workflow and integrated terminal.</span>
+                    <span>→</span>
+                </a>
+                <a class="press-item" href="https://linuxundich.de/gnu-linux/sshpilot-linux-alternative-putty-securecrt/" target="_blank" rel="noopener">
+                    <span class="press-who">Linux und Ich</span>
+                    <span class="press-desc">Linux und Ich presents SSH Pilot as a Linux alternative to PuTTY and SecureCRT, with a lean interface and practical management tools.</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="support">
+            <div class="wrap">
+                <h2>Free and open source. Kept that way by its users.</h2>
+                <div class="support-actions">
+                    <a class="btn btn-outline" href="https://ko-fi.com/newmfat" target="_blank" rel="noopener"><span>Support on Ko-fi</span><span>→</span></a>
+                    <button class="btn btn-outline" data-copy="Copy address" data-text="bc1qqtsyf0ft85zshsnw25jgsxnqy45rfa867zqk4t"><span>BTC</span><span>Copy address</span></button>
+                    <button class="btn btn-outline" data-copy="Copy address" data-text="DRzNb8DycFD65H6oHNLuzyTzY1S5avPHHx"><span>DOGE</span><span>Copy address</span></button>
                 </div>
             </div>
-        </footer>
-    </div>
+        </section>
+    </main>
+
+    <footer class="footer wrap">
+        <span>SSH Pilot — released under the GNU GPLv3 license.</span>
+        <span class="footer-links">
+            <a href="https://github.com/mfat/sshpilot" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://github.com/mfat/sshpilot/wiki" target="_blank" rel="noopener">Docs</a>
+            <a href="https://github.com/mfat/sshpilot/issues" target="_blank" rel="noopener">Issues</a>
+            <a href="https://t.me/sshpilot" target="_blank" rel="noopener">Telegram</a>
+            <a href="reviews.html">Reviews</a>
+        </span>
+    </footer>
 
     <script>
-        // Copy Wallet Address Helper
-        function copyWallet(address, btn) {
-            navigator.clipboard.writeText(address).then(() => {
-                const action = btn.querySelector('.wallet-action');
-                if (action) action.textContent = 'Copied!';
-                setTimeout(() => {
-                    if (action) action.textContent = 'Copy';
-                }, 2000);
-            });
-        }
-        // Copy Code Snippet
-        function copyCode(btn) {
-            const pre = btn.nextElementSibling;
-            if (!pre) return;
-            navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
-                btn.textContent = 'Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.textContent = 'Copy';
-                    btn.classList.remove('copied');
-                }, 2000);
-            });
-        }
+        // Screenshot gallery tabs
+        (() => {
+            const img = document.getElementById('shot-img');
+            const tabs = document.querySelectorAll('.shot-tabs button');
+            tabs.forEach(tab => tab.addEventListener('click', () => {
+                tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+                img.src = tab.dataset.src;
+                img.alt = tab.textContent;
+            }));
+        })();
 
-        // Theme Switcher
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleBtns = document.querySelectorAll('#theme-toggle, #theme-toggle-mobile');
-            function syncIcons() {
-                const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-                toggleBtns.forEach(btn => {
-                    const sun = btn.querySelector('.sun-icon');
-                    const moon = btn.querySelector('.moon-icon');
-                    if (sun && moon) {
-                        if (currentTheme === 'dark') {
-                            sun.style.display = 'block';
-                            moon.style.display = 'none';
-                        } else {
-                            sun.style.display = 'none';
-                            moon.style.display = 'block';
-                        }
-                    }
-                });
-            }
-
-            syncIcons();
-
-            toggleBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const current = document.documentElement.getAttribute('data-theme') || 'dark';
-                    const next = current === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', next);
-                    localStorage.setItem('theme', next);
-                    syncIcons();
-                });
+        // Copy buttons: repo snippets copy the sibling <pre>, wallet buttons copy data-text
+        document.querySelectorAll('[data-copy]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.dataset.text ?? btn.closest('.repo').querySelector('pre').textContent.trim();
+                const label = btn.children.length ? btn.lastElementChild : btn;
+                navigator.clipboard.writeText(text).then(() => {
+                    label.textContent = 'Copied';
+                    clearTimeout(btn._t);
+                    btn._t = setTimeout(() => { label.textContent = btn.dataset.copy; }, 2000);
+                }).catch(() => {});
             });
         });
 
-        // Hamburger Navigation Menu
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
-        });
-
-        // Release Download Links Auto-Detection
+        // Point package cards straight at the latest release assets
         (async () => {
-            const repo = "mfat/sshpilot";
             try {
-                const r = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+                const r = await fetch('https://api.github.com/repos/mfat/sshpilot/releases/latest');
                 if (!r.ok) return;
-                const rel = await r.json();
-                const assets = rel.assets || [];
-                const pick = rx => assets.find(a => rx.test(a.name));
-
-                const dmg = pick(/\.dmg$/i);
-                const deb = pick(/\.deb$/i);
-                const rpm = pick(/\.rpm$/i);
-
-                if (dmg) document.getElementById("dl-mac").href = dmg.browser_download_url;
-                if (deb) document.getElementById("dl-deb").href = deb.browser_download_url;
-                if (rpm) document.getElementById("dl-rpm").href = rpm.browser_download_url;
-
-                const primaryBtn = document.getElementById("hero-primary-download");
-                if (primaryBtn) {
-                    const ua = navigator.userAgent;
-                    if (/Mac/i.test(ua) && dmg) {
-                        primaryBtn.href = dmg.browser_download_url;
-                        primaryBtn.textContent = 'Download for macOS (.dmg)';
-                    } else if (/Ubuntu|Debian|Mint/i.test(ua) && deb) {
-                        primaryBtn.href = deb.browser_download_url;
-                        primaryBtn.textContent = 'Download for Linux (.deb)';
-                    } else if (/Fedora|RHEL/i.test(ua) && rpm) {
-                        primaryBtn.href = rpm.browser_download_url;
-                        primaryBtn.textContent = 'Download for Linux (.rpm)';
-                    }
-                }
+                const assets = (await r.json()).assets || [];
+                const link = (id, rx) => {
+                    const a = assets.find(a => rx.test(a.name));
+                    if (a) document.getElementById(id).href = a.browser_download_url;
+                };
+                link('dl-deb', /\.deb$/i);
+                link('dl-rpm', /\.rpm$/i);
+                link('dl-mac', /\.dmg$/i);
+                link('dl-win', /\.(exe|msi)$/i);
             } catch (e) {
                 console.error(e);
             }
         })();
 
-        // GitHub Stargazers Counter
+        // GitHub stargazers counter
         (async () => {
             try {
                 const res = await fetch('https://api.github.com/repos/mfat/sshpilot');
                 if (!res.ok) return;
                 const data = await res.json();
-                if (data.stargazers_count !== undefined) {
-                    const countStr = `★ ${data.stargazers_count.toLocaleString()}`;
-                    document.querySelectorAll('#github-stars, .github-stars-badge').forEach(el => {
-                        el.textContent = countStr;
+                if (data.stargazers_count != null) {
+                    document.querySelectorAll('.github-stars').forEach(el => {
+                        el.textContent = `★ ${data.stargazers_count.toLocaleString()}`;
                     });
                 }
-            } catch (err) {
-                console.error('Failed to fetch GitHub stars:', err);
+            } catch (e) {
+                console.error(e);
             }
         })();
     </script>
