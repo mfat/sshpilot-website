@@ -1,111 +1,42 @@
-# Screenshots Management
+# Screenshots
 
-This document explains how to add and manage screenshots for the SSH Pilot website.
+The home page gallery (`#screenshots` in `docs/index.html`) shows one large screenshot with a row of thumbnails below it and previous/next buttons. The list of screenshots is written directly in the HTML.
 
-## Adding New Screenshots
+## Adding a Screenshot
 
-### 1. Add Screenshot Files
-Simply copy your PNG screenshot files to the `docs/screenshots/` directory:
+1. Copy the PNG into `docs/screenshots/`:
 
-```bash
-cp your-screenshot.png docs/screenshots/
-```
+   ```bash
+   cp my-feature.png docs/screenshots/
+   ```
 
-### 2. Update the Website
-Run the update script to automatically update the website:
+2. Add a thumbnail button to the `.shot-tabs` list in `docs/index.html`. The `title` is used as the caption:
 
-```bash
-python3 docs/update_screenshots.py
-```
+   ```html
+   <button role="tab" aria-selected="false" title="My feature" aria-label="My feature"><img src="screenshots/my-feature.png" alt="" loading="lazy"></button>
+   ```
 
-This script will:
-- Scan the `docs/screenshots/` directory for PNG files
-- Generate captions based on filenames (e.g., `main-window.png` → `Main Window`)
-- Read optional overrides from `docs/screenshot_captions.json`
-- Update the `docs/screenshot_data.js` file automatically
+   Buttons appear in the order they are listed. The "1 / 9" counter updates on its own.
 
-### 3. Commit and Deploy
-Commit your changes and push to deploy:
+3. Commit and push:
 
-```bash
-git add docs/screenshots/your-screenshot.png
-git add docs/screenshot_data.js
-git commit -m "Add new screenshot: your-screenshot.png"
-git push origin main
-```
+   ```bash
+   git add docs/screenshots/my-feature.png docs/index.html
+   git commit -m "Add my-feature screenshot"
+   git push origin main
+   ```
 
-## Screenshot Guidelines
+## Changing the First Screenshot
 
-### File Format
-- **Format**: PNG only
-- **Naming**: Use descriptive names with hyphens (e.g., `main-window.png`, `ssh-settings.png`)
-- **Size**: Recommended 1200x800 pixels or similar 3:2 aspect ratio
-- **Quality**: High quality, clear screenshots
+The first button is selected on page load. If you reorder the list, also update the main image (`#shot-img`) and caption (`#shot-label`) in `index.html` to match the new first entry.
 
-### Caption Generation
-The script automatically generates captions from filenames:
-- `main-window.png` → "Main Window"
-- `ssh-settings.png` → "Ssh Settings"
-- `port-forwarding.png` → "Port Forwarding"
+## Guidelines
 
-### Manual Caption Override
-If you want custom captions, edit or create the `docs/screenshot_captions.json` file:
+- **Format:** PNG.
+- **Size:** the frame uses a 1437×991 aspect ratio. Screenshots of a different shape are letterboxed, not cropped (thumbnails are cropped to fill).
+- **Naming:** lowercase with hyphens, e.g. `file-manager.png`.
+- **Weight:** keep each file small (ideally under 250 KB). All thumbnails load the full-size image.
 
-```json
-{
-    "main-window.png": "Custom caption here",
-    "ssh-settings.png": "Another custom caption"
-}
-```
+## Removing a Screenshot
 
-After updating the JSON file, rerun the update script so the gallery picks up the change.
-
-## Website Features
-
-### Grid View
-- Displays all screenshots in a responsive grid
-- Click any screenshot to open it in slideshow mode
-- Consistent aspect ratios (16:10) for uniform appearance
-
-### Slideshow View
-- Full-screen slideshow with navigation controls
-- Auto-play functionality (3-second intervals)
-- Keyboard navigation (arrow keys, spacebar)
-- Click indicators to jump to specific screenshots
-
-### Responsive Design
-- Works on desktop, tablet, and mobile devices
-- Optimized loading with lazy loading
-- Dark/light theme support
-
-## File Structure
-
-```
-docs/
-├── screenshots/           # Screenshot PNG files
-│   ├── main-window.png
-│   ├── ssh-settings.png
-│   └── ...
-├── screenshot_captions.json  # Optional caption overrides
-├── screenshot_data.js    # Auto-generated gallery data
-├── screenshots.js        # JavaScript that renders the gallery
-├── styles.css            # CSS styles for screenshots
-├── update_screenshots.py # Script that refreshes the gallery data
-└── index.html            # Main website with screenshot section
-```
-
-## Troubleshooting
-
-### Screenshots Not Appearing
-1. Ensure files are PNG format
-2. Check file permissions
-3. Run `python3 docs/update_screenshots.py` to regenerate the gallery data
-
-### Captions Not Updating
-1. Update `docs/screenshot_captions.json`
-2. Or rename the file to match the desired caption
-
-### Slideshow Not Working
-1. Check browser console for JavaScript errors
-2. Ensure `screenshots.js` is properly loaded in `index.html`
-3. Verify all screenshot files exist in the correct path
+Delete its `<button>` from `.shot-tabs` and remove the PNG from `docs/screenshots/`.

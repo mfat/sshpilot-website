@@ -1,57 +1,42 @@
-# SSH Pilot Website v2
+# SSH Pilot Website
 
-This is the development version of the SSH Pilot website. The current live version remains in the `docs/` directory.
-
-## Development Setup
-
-- **Live Version**: `docs/` (currently deployed)
-- **Development Version**: `v2/` (this directory)
-- **Branch**: `v2-development`
+Source for [sshpilot.app](https://sshpilot.app), served by GitHub Pages from this `docs/` directory on the `main` branch. It is plain static HTML and CSS with a little inline JavaScript — no build step.
 
 ## File Structure
 
 ```
-v2/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles
-├── script.js           # JavaScript functionality
-├── screenshots.js      # Screenshots gallery logic
-├── screenshots/        # Screenshot images
-├── io.github.mfat.sshpilot.svg  # Logo
-└── README.md           # This file
+docs/
+├── index.html                   # Home page
+├── reviews.html                 # Press and reviews page
+├── index.css                    # Shared stylesheet for both pages
+├── logo.svg                     # Logo (nav and favicon)
+├── io.github.mfat.sshpilot.svg  # App icon
+├── os/                          # Distro / OS logos for the install cards
+├── screenshots/                 # App screenshots (see SCREENSHOTS.md)
+└── CNAME                        # Custom domain for GitHub Pages
 ```
 
-## Development Workflow
+## Local Preview
 
-1. Make changes in the `v2/` directory
-2. Test locally by opening `v2/index.html` in a browser
-3. Commit changes to the `v2-development` branch
-4. When ready to deploy v2, merge to main and update deployment
+Open `docs/index.html` in a browser, or serve the directory:
 
-## Recent Changes
-
-- Enhanced button clickability with extended touch targets
-- Improved accessibility with proper z-index layering
-- Added user-select prevention for better UX
-- Extended clickable areas with pseudo-elements
-
-## Next Steps for v2
-
-- [ ] Modernize the design with latest web standards
-- [ ] Improve responsive design
-- [ ] Add animations and micro-interactions
-- [ ] Optimize performance
-- [ ] Add dark mode improvements
-- [ ] Enhance accessibility features
-
-## Blog Configuration
-
-Production builds load blog posts from GitHub issues. By default, only issues opened by the configured repository owner are displayed. To allow additional trusted authors, set the `data-blog-author-allowlist` attribute on `docs/blog.html`'s `<body>` element with a comma- or space-separated list of GitHub logins. For example:
-
-```html
-<body
-    data-blog-repo-owner="mfat"
-    data-blog-author-allowlist="mfat,octocat">
+```bash
+python3 -m http.server -d docs
 ```
 
-Only posts created by these accounts will appear on the published blog.
+## Runtime Behavior
+
+The pages call the public GitHub API from the browser:
+
+- `repos/mfat/sshpilot` — shows the star count in the nav.
+- `repos/mfat/sshpilot/releases/latest` — points the .deb, .rpm, macOS and Windows install cards at the matching release files. If the call fails, the cards fall back to the latest release page.
+
+The install section also checks the visitor's user agent to mention their OS and tag the matching package as "Your system".
+
+## Making Changes
+
+- **Styles:** edit `index.css`. Colors and fonts are defined as CSS variables at the top.
+- **Reviews:** add a card to `reviews.html`, and optionally to the "In the press" section of `index.html`.
+- **Screenshots:** see [SCREENSHOTS.md](SCREENSHOTS.md).
+
+Commit to `main` and push; GitHub Pages deploys automatically.
