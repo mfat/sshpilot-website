@@ -251,3 +251,12 @@ a:hover { color: var(--color-accent-600); }
 }
 .review-cta a { font-weight: 600; font-size: 14px; }
 .page-reviews .footer { margin-top: clamp(64px, 8vw, 96px); }
+.prose { display: flex; flex-direction: column; gap: 16px; }
+.prose > * { max-width: 760px; }
+.prose h2 { font-size: 26px; margin-top: 24px; }
+.prose p, .prose li { font-size: 17px; line-height: 1.6; color: color-mix(in srgb, var(--color-text) 85%, transparent); }
+.prose ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; }
+.prose a { text-decoration: underline; }
+.prose code { font-size: 0.9em; overflow-wrap: anywhere; }
+.downloads-note { margin: 4px 0 0; font-size: 14px; color: color-mix(in srgb, var(--color-text) 75%, transparent); }
+.downloads-note a { text-decoration: underline; }
